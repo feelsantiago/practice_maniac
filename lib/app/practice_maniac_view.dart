@@ -8,7 +8,6 @@ class PracticeManiacView extends View<PracticeManiacViewModel> {
 
   @override
   Widget build(BuildContext context) {
-    print('App Ready');
     return MaterialApp(
       title: 'Dashboard',
       theme: ThemeData(
