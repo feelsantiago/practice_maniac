@@ -1,10 +1,10 @@
 import 'package:hive/hive.dart';
-import 'package:practice_maniac/database/entity.dart';
+import 'package:practice_maniac/database/embedded_entity.dart';
 
 part 'progress.g.dart';
 
 @HiveType(typeId: 3)
-class Progress extends Entity {
+class Progress extends EmbeddedEntity {
   @HiveField(1)
   final String value;
 

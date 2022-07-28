@@ -29,7 +29,9 @@ class TrackerListViewModel extends ViewModelList<Tracker> {
     final color = ColorPallet().unique(colors);
     final tracker = Tracker(name: 'New Progress', measure: 'bmp', color: color.value);
 
-    model.add(tracker);
+    _trackerService.add(tracker).listen((event) {
+      model.add(tracker);
+    });
   }
 
   Stream<List<Tracker>> _loadTrackers() {

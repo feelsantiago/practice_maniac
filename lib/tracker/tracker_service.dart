@@ -16,4 +16,11 @@ class TrackerService {
         .doOnData((event) => print(event))
         .map((practice) => practice.first.trackers);
   }
+
+  Stream<Tracker> add(Tracker tracker) {
+    return Stream.fromFuture(_repository.getAll<Practice>()).map((practices) => practices.first).switchMap((practice) {
+      practice.trackers.add(tracker);
+      return Stream.fromFuture(practice.save()).mapTo(tracker);
+    });
+  }
 }

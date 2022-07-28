@@ -1,13 +1,14 @@
 import 'dart:ui';
 
 import 'package:hive/hive.dart';
+import 'package:practice_maniac/database/embedded_entity.dart';
 import 'package:practice_maniac/database/entity.dart';
 import 'package:practice_maniac/progress/progress.dart';
 
 part 'tracker.g.dart';
 
 @HiveType(typeId: 2)
-class Tracker extends Entity {
+class Tracker extends EmbeddedEntity {
   @HiveField(1)
   final String name;
 

@@ -1,8 +1,6 @@
 import 'package:hive/hive.dart';
 
-import 'entity.dart';
-
-class BoxAdapter<T extends Entity> {
+class BoxAdapter<T> {
   final TypeAdapter<T> adapter;
 
   bool isOpen = false;
