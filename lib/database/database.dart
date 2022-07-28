@@ -1,6 +1,10 @@
 import 'package:hive/hive.dart';
+import 'package:practice_maniac/database/box_adapter.dart';
 import 'package:practice_maniac/database/database_adapters.dart';
 import 'package:practice_maniac/database/entity.dart';
+import 'package:practice_maniac/practice/practice.dart';
+import 'package:practice_maniac/progress/progress.dart';
+import 'package:practice_maniac/tracker/tracker.dart';
 import 'package:practice_maniac/utils/not.dart';
 
 class Database {
@@ -12,7 +16,11 @@ class Database {
   void init() {
     Hive.init(path);
 
-    adapters = DatabaseAdapters([]);
+    adapters = DatabaseAdapters([
+      BoxAdapter<Practice>(adapter: PracticeAdapter()),
+      BoxAdapter<Tracker>(adapter: TrackerAdapter()),
+      BoxAdapter<Progress>(adapter: ProgressAdapter()),
+    ]);
 
     adapters.register();
   }

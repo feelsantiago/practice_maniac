@@ -1,11 +1,14 @@
-class Progress {
-  final String id;
+import 'package:hive/hive.dart';
+import 'package:practice_maniac/database/entity.dart';
+
+part 'progress.g.dart';
+
+@HiveType(typeId: 3)
+class Progress extends Entity {
+  @HiveField(1)
   final String value;
-  late final DateTime date;
 
   Progress({
-    required this.id,
     required this.value,
-    DateTime? date,
-  }) : date = date ?? DateTime.now();
+  });
 }

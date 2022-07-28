@@ -27,7 +27,7 @@ class TrackerListViewModel extends ViewModelList<Tracker> {
     final colors = UniqueColorList(model.map((tracker) => tracker.color));
     final color = ColorPallet().unique(colors);
     final id = int.parse(model.last.id) + 1;
-    final tracker = Tracker(id: id.toString(), name: 'New Progress', measure: 'bmp', color: color);
+    final tracker = Tracker(name: 'New Progress', measure: 'bmp', color: color);
 
     model.add(tracker);
   }
