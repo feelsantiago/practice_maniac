@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'app/app.dart';
+import 'package:practice_maniac/app/practice_maniac_view.dart';
 import 'configuration/injection.dart';
 
 void main() {
@@ -7,5 +7,5 @@ void main() {
 
   configureDependencies();
 
-  runApp(const App());
+  runApp(PracticeManiacView());
 }

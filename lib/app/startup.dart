@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:injectable/injectable.dart';
 import 'package:practice_maniac/database/database.dart';
 import 'package:practice_maniac/database/database_path_provider.dart';
@@ -13,5 +15,6 @@ class Startup {
     await path.find();
 
     _database.init(path);
+    log('[Startup] - Database ready!');
   }
 }

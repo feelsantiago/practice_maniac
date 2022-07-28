@@ -17,6 +17,7 @@ class Database {
   Database();
 
   void init(DatabasePathProvider provider) {
+    pathProvider = provider;
     Hive.init(pathProvider.path);
 
     adapters = DatabaseAdapters([
