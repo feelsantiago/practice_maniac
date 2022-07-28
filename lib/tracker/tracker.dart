@@ -20,6 +20,13 @@ class Tracker extends Entity {
   @HiveField(4)
   final List<Progress> progress;
 
-  Tracker({required this.name, required this.measure, required this.color, List<Progress>? progress})
-      : progress = progress ?? [];
+  Tracker({
+    required this.name,
+    required this.measure,
+    required this.color,
+    List<Progress>? progress,
+    String? id,
+    DateTime? createdAt,
+  })  : progress = progress ?? [],
+        super(id: id, createdAt: createdAt);
 }

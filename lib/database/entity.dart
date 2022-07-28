@@ -1,10 +1,13 @@
+import 'package:hive/hive.dart';
 import 'package:uuid/uuid.dart';
 
 abstract class Entity {
+  @HiveField(100)
   late String id;
-  late DateTime createDate;
+  @HiveField(101)
+  late DateTime createdAt;
 
-  Entity({String? id, DateTime? createDate})
+  Entity({String? id, DateTime? createdAt})
       : id = id ?? Uuid().v4(),
-        createDate = createDate ?? DateTime.now();
+        createdAt = createdAt ?? DateTime.now();
 }

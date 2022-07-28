@@ -10,5 +10,7 @@ class Progress extends Entity {
 
   Progress({
     required this.value,
-  });
+    String? id,
+    DateTime? createdAt,
+  }) : super(id: id, createdAt: createdAt);
 }

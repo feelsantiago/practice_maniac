@@ -17,5 +17,12 @@ class Practice extends Entity {
   @HiveField(3)
   List<Tracker> trackers;
 
-  Practice({required this.name, required this.color, List<Tracker>? trackers}) : trackers = trackers ?? [];
+  Practice({
+    required this.name,
+    required this.color,
+    List<Tracker>? trackers,
+    String? id,
+    DateTime? createdAt,
+  })  : trackers = trackers ?? [],
+        super(id: id, createdAt: createdAt);
 }
