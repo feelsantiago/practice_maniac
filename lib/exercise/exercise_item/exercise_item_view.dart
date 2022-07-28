@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:practice_maniac/exercise/exercise.dart';
+import 'package:practice_maniac/exercise/exercise_item/exercise_item_view_model.dart';
 import 'package:practice_maniac/packages/mvvm/view_data.dart';
-import 'package:practice_maniac/tracker/tracker.dart';
-import 'package:practice_maniac/tracker/tracker_item/components/last_progress.dart';
-import 'package:practice_maniac/tracker/tracker_item/tracker_item_view_model.dart';
 
-class TrackerItemView extends ViewData<Tracker, TrackerItemViewModel> {
-  Tracker get tracker => viewModel.model.value;
+import 'components/last_progress.dart';
 
-  TrackerItemView({Key? key, required Tracker tracker}) : super(key: key, model: tracker);
+class ExerciseItemView extends ViewData<Exercise, ExerciseItemViewModel> {
+  Exercise get exercise => viewModel.model.value;
+
+  ExerciseItemView({Key? key, required Exercise tracker}) : super(key: key, model: tracker);
 
   @override
   Widget build(BuildContext context) {
@@ -20,22 +21,22 @@ class TrackerItemView extends ViewData<Tracker, TrackerItemViewModel> {
         borderRadius: const BorderRadius.all(
           Radius.circular(10),
         ),
-        color: Color(tracker.color),
+        color: Color(exercise.color),
       ),
       padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(tracker.name),
+          Text(exercise.name),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const Text('Last Progress:'),
               LastProgress(
-                progresses: tracker.progress,
-                measure: tracker.measure,
+                progresses: exercise.progress,
+                measure: exercise.measure,
               ),
             ],
           ),

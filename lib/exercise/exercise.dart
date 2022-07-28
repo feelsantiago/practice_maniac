@@ -1,14 +1,11 @@
-import 'dart:ui';
-
 import 'package:hive/hive.dart';
 import 'package:practice_maniac/database/embedded_entity.dart';
-import 'package:practice_maniac/database/entity.dart';
 import 'package:practice_maniac/progress/progress.dart';
 
-part 'tracker.g.dart';
+part 'exercise.g.dart';
 
 @HiveType(typeId: 2)
-class Tracker extends EmbeddedEntity {
+class Exercise extends EmbeddedEntity {
   @HiveField(1)
   final String name;
 
@@ -21,7 +18,7 @@ class Tracker extends EmbeddedEntity {
   @HiveField(4)
   final List<Progress> progress;
 
-  Tracker({
+  Exercise({
     required this.name,
     required this.measure,
     required this.color,

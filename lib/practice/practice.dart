@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:hive/hive.dart';
 import 'package:practice_maniac/database/entity.dart';
-import 'package:practice_maniac/tracker/tracker.dart';
+import 'package:practice_maniac/exercise/exercise.dart';
 
 part 'practice.g.dart';
 
@@ -15,14 +15,14 @@ class Practice extends Entity {
   int color;
 
   @HiveField(3)
-  List<Tracker> trackers;
+  List<Exercise> exercises;
 
   Practice({
     required this.name,
     required this.color,
-    List<Tracker>? trackers,
+    List<Exercise>? exercises,
     String? id,
     DateTime? createdAt,
-  })  : trackers = trackers ?? [],
+  })  : exercises = exercises ?? [],
         super(id: id, createdAt: createdAt);
 }

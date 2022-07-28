@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:observable_ish/list/list.dart';
+import 'package:practice_maniac/exercise/exercise.dart';
+import 'package:practice_maniac/exercise/exercise_item/exercise_item_view.dart';
+import 'package:practice_maniac/exercise/exercise_list/exercise_list_view_model.dart';
 import 'package:rx_widgets/rx_widgets.dart';
 import 'package:practice_maniac/packages/mvvm/view_list.dart';
-import 'package:practice_maniac/tracker/tracker.dart';
-import 'package:practice_maniac/tracker/tracker_item/tracker_item_view.dart';
-import 'package:practice_maniac/tracker/tracker_list/tracker_list_view_model.dart';
 
-class TrackerListView extends ViewList<Tracker, TrackerListViewModel> {
-  RxList<Tracker> get trackers => viewModel.model;
+class ExerciseListView extends ViewList<Exercise, ExerciseViewModel> {
+  RxList<Exercise> get exercises => viewModel.model;
 
-  TrackerListView({Key? key}) : super(key: key, model: []);
+  ExerciseListView({Key? key}) : super(key: key, model: []);
 
   @override
   Widget build(BuildContext context) {
@@ -17,15 +17,15 @@ class TrackerListView extends ViewList<Tracker, TrackerListViewModel> {
       children: [
         Expanded(
           child: ReactiveBuilder(
-            stream: trackers.onChange,
-            initialData: trackers,
+            stream: exercises.onChange,
+            initialData: exercises,
             builder: (context, _) => CustomScrollView(
               slivers: [
                 SliverPadding(
                   padding: const EdgeInsets.all(20),
                   sliver: SliverList(
                     delegate: SliverChildListDelegate(
-                      _trackers(),
+                      _exercises(),
                     ),
                   ),
                 ),
@@ -41,12 +41,12 @@ class TrackerListView extends ViewList<Tracker, TrackerListViewModel> {
     );
   }
 
-  List<Widget> _trackers() {
-    return trackers
+  List<Widget> _exercises() {
+    return exercises
         .map(
           (tracker) => Padding(
             padding: const EdgeInsets.symmetric(vertical: 10),
-            child: TrackerItemView(
+            child: ExerciseItemView(
               key: Key(tracker.id),
               tracker: tracker,
             ),

@@ -2,20 +2,20 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
+import 'package:practice_maniac/exercise/exercise.dart';
+import 'package:practice_maniac/exercise/exercise_service.dart';
 import 'package:rx_command/rx_command.dart';
 import 'package:practice_maniac/packages/mvvm/view_model_list.dart';
-import 'package:practice_maniac/tracker/tracker.dart';
-import 'package:practice_maniac/tracker/tracker_service.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:practice_maniac/utils/colors_utils.dart';
 
 @injectable
-class TrackerListViewModel extends ViewModelList<Tracker> {
-  final TrackerService _trackerService;
+class ExerciseViewModel extends ViewModelList<Exercise> {
+  final ExerciseService _exerciseService;
 
   late final RxCommand<void, void> newTrackerCommand;
 
-  TrackerListViewModel(this._trackerService) {
+  ExerciseViewModel(this._exerciseService) {
     newTrackerCommand = RxCommand.createSyncNoParamNoResult(_onNewTrackerCommand);
   }
 
@@ -27,15 +27,13 @@ class TrackerListViewModel extends ViewModelList<Tracker> {
   void _onNewTrackerCommand() {
     final colors = UniqueColorList(model.map((tracker) => Color(tracker.color)));
     final color = ColorPallet().unique(colors);
-    final tracker = Tracker(name: 'New Progress', measure: 'bmp', color: color.value);
+    final exercise = Exercise(name: 'New Progress', measure: 'bmp', color: color.value);
 
-    _trackerService.add(tracker).listen((event) {
-      model.add(tracker);
-    });
+    model.add(exercise);
   }
 
-  Stream<List<Tracker>> _loadTrackers() {
-    return _trackerService.find().doOnData((trackers) {
+  Stream<List<Exercise>> _loadTrackers() {
+    return _exerciseService.find().doOnData((trackers) {
       model.assignAll(trackers);
     });
   }
