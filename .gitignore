@@ -11,6 +11,7 @@
 
 # generated
 *.g.dart
+*.config.dart
 
 # IntelliJ related
 *.iml
