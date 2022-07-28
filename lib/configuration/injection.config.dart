@@ -25,7 +25,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factory<_i4.Repository>(() => _i4.Repository(get<_i3.Database>()));
   gh.singleton<_i5.Startup>(_i5.Startup(get<_i3.Database>()));
   gh.factory<_i6.TrackerItemViewModel>(() => _i6.TrackerItemViewModel());
-  gh.singleton<_i7.TrackerService>(_i7.TrackerService());
+  gh.singleton<_i7.TrackerService>(_i7.TrackerService(get<_i4.Repository>()));
   gh.factory<_i8.PracticeManiacViewModel>(
       () => _i8.PracticeManiacViewModel(get<_i5.Startup>()));
   gh.factory<_i9.TrackerListViewModel>(

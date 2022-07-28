@@ -12,7 +12,7 @@ class Practice extends Entity {
   String name;
 
   @HiveField(2)
-  Color color;
+  int color;
 
   @HiveField(3)
   List<Tracker> trackers;

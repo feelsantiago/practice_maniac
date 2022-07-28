@@ -15,7 +15,7 @@ class Tracker extends Entity {
   final String measure;
 
   @HiveField(3)
-  final Color color;
+  final int color;
 
   @HiveField(4)
   final List<Progress> progress;

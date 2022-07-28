@@ -20,7 +20,7 @@ class TrackerItemView extends ViewData<Tracker, TrackerItemViewModel> {
         borderRadius: const BorderRadius.all(
           Radius.circular(10),
         ),
-        color: tracker.color,
+        color: Color(tracker.color),
       ),
       padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
       child: Column(

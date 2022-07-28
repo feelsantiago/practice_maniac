@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
 import 'package:rx_command/rx_command.dart';
 import 'package:practice_maniac/packages/mvvm/view_model_list.dart';
@@ -24,9 +25,9 @@ class TrackerListViewModel extends ViewModelList<Tracker> {
   }
 
   void _onNewTrackerCommand() {
-    final colors = UniqueColorList(model.map((tracker) => tracker.color));
+    final colors = UniqueColorList(model.map((tracker) => Color(tracker.color)));
     final color = ColorPallet().unique(colors);
-    final tracker = Tracker(name: 'New Progress', measure: 'bmp', color: color);
+    final tracker = Tracker(name: 'New Progress', measure: 'bmp', color: color.value);
 
     model.add(tracker);
   }
