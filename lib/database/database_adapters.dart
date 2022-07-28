@@ -29,7 +29,7 @@ class DatabaseAdapters {
     boxes = listTransform.transform();
 
     for (var box in boxes.values) {
-      Hive.registerAdapter(box.adapter);
+      box.register();
     }
   }
 }

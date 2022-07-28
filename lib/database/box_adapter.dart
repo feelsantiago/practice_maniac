@@ -26,4 +26,8 @@ class BoxAdapter<T> {
   Future<void> close() async {
     _box.close();
   }
+
+  void register() {
+    Hive.registerAdapter<T>(adapter);
+  }
 }
