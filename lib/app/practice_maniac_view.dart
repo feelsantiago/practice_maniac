@@ -10,9 +10,7 @@ class PracticeManiacView extends View<PracticeManiacViewModel> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Dashboard',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: ThemeData(primarySwatch: Colors.blue, fontFamily: 'HindMadurai'),
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Dashboard'),
