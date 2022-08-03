@@ -1,4 +1,3 @@
-import 'package:hive/hive.dart';
 import 'package:practice_maniac/database/box_adapter.dart';
 import 'package:practice_maniac/database/entity.dart';
 import 'package:practice_maniac/utils/defined.dart';

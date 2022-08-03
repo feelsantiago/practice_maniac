@@ -1,4 +1,4 @@
-import 'package:practice_maniac/packages/mvvm.dart';
+import 'package:practice_maniac/infra/mvvm.dart';
 import 'package:observable_ish/observable_ish.dart';
 
 class ViewModelData<T> extends ViewModel with ModelBiding<T, RxValue<T>> {

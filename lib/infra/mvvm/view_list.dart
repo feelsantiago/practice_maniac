@@ -1,5 +1,5 @@
 import 'package:observable_ish/list/list.dart';
-import 'package:practice_maniac/packages/mvvm.dart';
+import 'package:practice_maniac/infra/mvvm.dart';
 import 'package:flutter/widgets.dart';
 
 abstract class ViewList<K, T extends ViewModelList<K>> extends View<T> {

@@ -1,6 +1,6 @@
 import 'package:injectable/injectable.dart';
 import 'package:practice_maniac/app/startup.dart';
-import 'package:practice_maniac/packages/mvvm/view_model.dart';
+import 'package:practice_maniac/infra/mvvm/view_model.dart';
 
 @injectable
 class PracticeManiacViewModel extends ViewModel {

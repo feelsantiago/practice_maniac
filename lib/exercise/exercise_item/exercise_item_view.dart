@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:practice_maniac/exercise/exercise.dart';
 import 'package:practice_maniac/exercise/exercise_item/exercise_item_view_model.dart';
-import 'package:practice_maniac/packages/mvvm/view_data.dart';
+import 'package:practice_maniac/infra/mvvm/view_data.dart';
 
 import 'components/last_progress.dart';
 

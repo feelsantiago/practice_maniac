@@ -8,6 +8,6 @@ abstract class Entity extends HiveObject {
   late DateTime createdAt;
 
   Entity({String? id, DateTime? createdAt})
-      : id = id ?? Uuid().v4(),
+      : id = id ?? const Uuid().v4(),
         createdAt = createdAt ?? DateTime.now();
 }

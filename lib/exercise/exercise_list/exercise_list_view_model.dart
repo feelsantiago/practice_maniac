@@ -5,7 +5,7 @@ import 'package:injectable/injectable.dart';
 import 'package:practice_maniac/exercise/exercise.dart';
 import 'package:practice_maniac/exercise/exercise_service.dart';
 import 'package:rx_command/rx_command.dart';
-import 'package:practice_maniac/packages/mvvm/view_model_list.dart';
+import 'package:practice_maniac/infra/mvvm/view_model_list.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:practice_maniac/utils/colors_utils.dart';
 

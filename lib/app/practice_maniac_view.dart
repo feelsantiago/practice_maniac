@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:practice_maniac/app/practice_maniac_view_model.dart';
-import 'package:practice_maniac/packages/mvvm/view.dart';
+import 'package:practice_maniac/infra/mvvm/view.dart';
 import 'package:practice_maniac/practice/practice_list/practice_list_view.dart';
 
 class PracticeManiacView extends View<PracticeManiacViewModel> {

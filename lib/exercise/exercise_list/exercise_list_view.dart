@@ -4,7 +4,7 @@ import 'package:practice_maniac/exercise/exercise.dart';
 import 'package:practice_maniac/exercise/exercise_item/exercise_item_view.dart';
 import 'package:practice_maniac/exercise/exercise_list/exercise_list_view_model.dart';
 import 'package:rx_widgets/rx_widgets.dart';
-import 'package:practice_maniac/packages/mvvm/view_list.dart';
+import 'package:practice_maniac/infra/mvvm/view_list.dart';
 
 class ExerciseListView extends ViewList<Exercise, ExerciseViewModel> {
   RxList<Exercise> get exercises => viewModel.model;
