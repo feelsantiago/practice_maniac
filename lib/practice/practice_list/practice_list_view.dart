@@ -29,7 +29,7 @@ class PracticeListView extends ViewList<Practice, PracticeListViewModel> {
               const Disclaimer(text: 'Create practices to tracker your progress'),
             ),
             onFalse: SimpleSelector(
-              const Text('Those are your practices'),
+              const Disclaimer(text: 'Those are your practices'),
             ),
           ),
           AddBox(
