@@ -33,9 +33,7 @@ class PracticeListView extends ViewList<Practice, PracticeListViewModel> {
             ),
           ),
           AddBox(
-            onTap: () {
-              print('test ${Random().nextInt(100)}');
-            },
+            onTap: viewModel.create,
           ),
         ],
       ),
