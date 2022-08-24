@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:practice_maniac/database/database.dart';
 import 'package:practice_maniac/database/database_path_provider.dart';

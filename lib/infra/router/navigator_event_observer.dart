@@ -3,7 +3,12 @@ import 'package:rxdart/rxdart.dart';
 
 import 'types.dart';
 
-class NavigatorObserver extends RouteObserver<PageRoute<dynamic>> {
+abstract class NavigatorEvents {
+  NavigationEvents events();
+}
+
+class NavigatorEventObserver extends RouteObserver<PageRoute<dynamic>>
+    implements NavigatorEvents {
   String lastPushTo = '';
   String lastPushFrom = '';
   String lastReplaceTo = '';
@@ -15,18 +20,22 @@ class NavigatorObserver extends RouteObserver<PageRoute<dynamic>> {
 
   final BehaviorSubject<RouteNavigationEvent> _events = BehaviorSubject();
 
-  late Stream<RouteNavigationEvent> events;
   late Stream<RouteNavigationEvent> push;
   late Stream<RouteNavigationEvent> replace;
   late Stream<RouteNavigationEvent> pop;
   late Stream<RouteNavigationEvent> remove;
 
-  NavigatorObserver() {
-    events = _events.stream;
-    push = events.where((event) => event.type == NavigationType.push);
-    replace = events.where((event) => event.type == NavigationType.replace);
-    pop = events.where((event) => event.type == NavigationType.pop);
-    remove = events.where((event) => event.type == NavigationType.remove);
+  NavigatorEventObserver() {
+    push = _events.where((event) => event.type == NavigationType.push);
+    replace = _events.where((event) => event.type == NavigationType.replace);
+    pop = _events.where((event) => event.type == NavigationType.pop);
+    remove = _events.where((event) => event.type == NavigationType.remove);
+  }
+
+  @override
+  NavigationEvents events() {
+    return NavigationEvents(
+        push: push, pop: pop, replace: replace, remove: remove);
   }
 
   @override

@@ -26,7 +26,8 @@ class PracticeListView extends ViewList<Practice, PracticeListViewModel> {
           WidgetSelector(
             selector: practices.isEmpty,
             onTrue: SimpleSelector(
-              const Disclaimer(text: 'Create practices to tracker your progress'),
+              const Disclaimer(
+                  text: 'Create practices to tracker your progress'),
             ),
             onFalse: SimpleSelector(
               const Disclaimer(text: 'Those are your practices'),
