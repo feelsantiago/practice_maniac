@@ -3,7 +3,7 @@ import 'dart:collection';
 import 'package:flutter/widgets.dart';
 import 'package:collection/collection.dart';
 import 'package:injectable/injectable.dart';
-import 'package:practice_maniac/infra/router/navigator_event_observer.dart';
+import 'package:practice_maniac/infra/router/navigation_observer.dart';
 import 'package:practice_maniac/utils/defined.dart';
 import 'package:practice_maniac/utils/listeners_sink.dart';
 import 'package:practice_maniac/utils/select.dart';
@@ -58,8 +58,8 @@ class NavigationStack {
     stack.clear();
   }
 
-  Future<void> listen(NavigatorEvents navigator) async {
-    final observer = navigator.events();
+  Future<void> listen(Navigation navigation) async {
+    final observer = navigation.events();
     await _listeners.cancel();
 
     _listeners.sink = observer.push

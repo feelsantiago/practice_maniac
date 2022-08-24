@@ -3,7 +3,7 @@ import 'package:injectable/injectable.dart';
 import 'package:practice_maniac/infra/router/navigator_stack.dart';
 import 'package:practice_maniac/utils/defined.dart';
 
-abstract class Navigator {
+abstract class INavigator {
   GlobalKey<NavigatorState> state();
   Future<T?> go<T extends Object>(String route, {Object? arguments});
   Future<T?> push<T extends Object>(String route, {Object? arguments});
@@ -14,8 +14,8 @@ abstract class Navigator {
   bool canPop();
 }
 
-@Singleton(as: Navigator)
-class GlobalNavigator implements Navigator {
+@Singleton(as: INavigator)
+class GlobalNavigator implements INavigator {
   final GlobalKey<NavigatorState> _state;
   final NavigationStack stack;
 

@@ -17,6 +17,8 @@ class PracticeManiacView extends View<PracticeManiacViewModel> {
         backgroundColor: Colors.black,
         canvasColor: Colors.black,
       ),
+      navigatorKey: viewModel.navigator,
+      navigatorObservers: [viewModel.navigation],
       home: PracticeListView(),
     );
   }
