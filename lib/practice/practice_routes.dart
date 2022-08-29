@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:practice_maniac/infra/router/rx_route.dart';
 import 'package:practice_maniac/practice/practice_list/practice_list_view.dart';
 
