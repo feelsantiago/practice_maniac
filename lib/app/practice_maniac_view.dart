@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:practice_maniac/app/practice_maniac_view_model.dart';
 import 'package:practice_maniac/infra/mvvm/view.dart';
-import 'package:practice_maniac/practice/practice_list/practice_list_view.dart';
 
 class PracticeManiacView extends View<PracticeManiacViewModel> {
   PracticeManiacView({Key? key}) : super(key: key);
@@ -19,7 +18,8 @@ class PracticeManiacView extends View<PracticeManiacViewModel> {
       ),
       navigatorKey: viewModel.navigator,
       navigatorObservers: [viewModel.navigation],
-      home: PracticeListView(),
+      initialRoute: viewModel.routes.initial,
+      onGenerateRoute: viewModel.routes.find,
     );
   }
 }

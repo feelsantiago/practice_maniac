@@ -6,6 +6,11 @@ abstract class RouteModule {
   List<RxRoute> build();
 }
 
+abstract class RoutesDefinition {
+  List<RouteModule> routes();
+  String initial();
+}
+
 class RxRoute<T extends Object> {
   final String path;
   final bool fullScreenDialogue;
