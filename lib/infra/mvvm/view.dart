@@ -1,15 +1,19 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:practice_maniac/configuration/injection.dart';
 import 'package:practice_maniac/infra/mvvm.dart';
 import 'package:practice_maniac/infra/mvvm/view_model_provider.dart';
 import 'package:focus_detector/focus_detector.dart';
+import 'package:practice_maniac/infra/router/navigator.dart';
 import 'package:rx_widgets/rx_widgets.dart';
 import 'package:rxdart/rxdart.dart';
 
 abstract class View<T extends ViewModel> extends StatefulWidget {
   final ViewModelProvider<T> provider = ViewModelProvider<T>();
   T get viewModel => provider.viewModel;
+
+  INavigator get navigator => getIt<INavigator>();
 
   View({Key? key}) : super(key: key);
 
