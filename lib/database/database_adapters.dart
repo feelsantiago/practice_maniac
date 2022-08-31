@@ -17,7 +17,7 @@ class DatabaseAdapters {
   BoxAdapter<E> get<E extends Entity>() {
     final box = Defined(boxes[E.toString()]);
 
-    if (box.empty()) {
+    if (box.not.exist()) {
       throw Exception('Invalid Box');
     }
 

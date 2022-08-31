@@ -17,7 +17,7 @@ class UniqueColorList {
   }
 
   Map<String, bool> _colorsMap() {
-    if (Defined(_unique).empty()) {
+    if (Defined(_unique).not.exist()) {
       _unique = _build();
     }
 
