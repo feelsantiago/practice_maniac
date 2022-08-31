@@ -4,12 +4,12 @@ import 'validators.dart';
 
 typedef ValidatorHandler<T> = String? Function(T? value);
 
-abstract class ValidatorErrorState {
+abstract class ValidatorState {
   bool exist();
   String? error();
 }
 
-class ValidatorSuccess implements ValidatorErrorState {
+class ValidatorSuccess implements ValidatorState {
   @override
   String? error() {
     return null;
@@ -21,7 +21,7 @@ class ValidatorSuccess implements ValidatorErrorState {
   }
 }
 
-class ValidatorError<T> implements ValidatorErrorState {
+class ValidatorError<T> implements ValidatorState {
   T value;
   Validator<T> validator;
 
@@ -37,10 +37,6 @@ class ValidatorError<T> implements ValidatorErrorState {
 
   @override
   String? error() {
-    if (Defined(_result).not.exist()) {
-      exist();
-    }
-
     return _result;
   }
 }
@@ -54,7 +50,7 @@ class FormValidator<T> {
   ValidatorHandler<T> register() {
     return (T? value) {
       final valid = validators
-          .map<ValidatorErrorState>(
+          .map<ValidatorState>(
             (validator) => ValidatorError(value, validator),
           )
           .firstWhere(
