@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:practice_maniac/components/page_structure.dart';
 import 'package:practice_maniac/infra/mvvm.dart';
 import 'package:practice_maniac/practice/practice.dart';
 import 'package:practice_maniac/practice/practice_create/practice_create_view_model.dart';
@@ -8,7 +9,9 @@ class PracticeCreateView extends ViewData<Practice, PracticeCreateViewModel> {
 
   @override
   Widget build(BuildContext context) {
-    print('test');
-    return const Text('Practice Form Create');
+    return PageStructure(
+      title: 'New Practice',
+      body: const Text('test'),
+    );
   }
 }

@@ -13,11 +13,6 @@ class PracticeListViewModel extends ViewModelList<Practice> {
 
   PracticeListViewModel(this._navigator) {
     create = RxCommand.createSyncNoParamNoResult(_onCreate);
-
-    create.thrownExceptions.listen((event) {
-      print(event);
-      print(event.error.stackTrace);
-    });
   }
 
   void _onCreate() {
