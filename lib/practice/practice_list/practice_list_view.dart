@@ -19,6 +19,7 @@ class PracticeListView extends ViewList<Practice, PracticeListViewModel> {
   Widget build(BuildContext context) {
     return PageStructure(
       title: 'Practices',
+      leading: const Icon(Icons.menu),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
