@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:hive/hive.dart';
 import 'package:practice_maniac/database/entity.dart';
 import 'package:practice_maniac/exercise/exercise.dart';
@@ -25,4 +23,9 @@ class Practice extends Entity {
     DateTime? createdAt,
   })  : exercises = exercises ?? [],
         super(id: id, createdAt: createdAt);
+
+  Practice.empty()
+      : name = 'Empty',
+        color = 1,
+        exercises = [];
 }

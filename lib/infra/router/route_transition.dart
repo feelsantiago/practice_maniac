@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:practice_maniac/infra/router/types.dart';
 
 abstract class RouteTransition {
-  Route<dynamic> build<T extends Object>(
+  Route<Object> build<T extends Object>(
       RouteSettings settings, RouteBuilder<T> builder, bool fullScreenDialog);
 }
 
@@ -10,7 +10,7 @@ class DefaultTransition implements RouteTransition {
   const DefaultTransition();
 
   @override
-  Route<dynamic> build<T extends Object>(
+  Route<Object> build<T extends Object>(
       RouteSettings settings, RouteBuilder<T> builder, bool fullScreenDialog) {
     return MaterialPageRoute(
       settings: settings,
@@ -28,7 +28,7 @@ class SlideRightTransition implements RouteTransition {
   SlideRightTransition({this.opaque = false});
 
   @override
-  Route build<T extends Object>(
+  Route<Object> build<T extends Object>(
       RouteSettings settings, RouteBuilder<T> builder, bool fullScreenDialog) {
     return PageRouteBuilder(
       settings: settings,
@@ -60,7 +60,7 @@ class ScalingTransition implements RouteTransition {
   ScalingTransition({this.opaque = false});
 
   @override
-  Route build<T extends Object>(
+  Route<Object> build<T extends Object>(
       RouteSettings settings, RouteBuilder<T> builder, bool fullScreenDialog) {
     return PageRouteBuilder(
       settings: settings,
@@ -97,7 +97,7 @@ class RotateTransition implements RouteTransition {
   RotateTransition({this.opaque = false});
 
   @override
-  Route build<T extends Object>(
+  Route<Object> build<T extends Object>(
       RouteSettings settings, RouteBuilder<T> builder, bool fullScreenDialog) {
     return PageRouteBuilder(
       settings: settings,
@@ -134,7 +134,7 @@ class SizeChangeTransition implements RouteTransition {
   SizeChangeTransition({this.opaque = false});
 
   @override
-  Route build<T extends Object>(
+  Route<Object> build<T extends Object>(
       RouteSettings settings, RouteBuilder<T> builder, bool fullScreenDialog) {
     return PageRouteBuilder(
       settings: settings,
@@ -165,7 +165,7 @@ class FadingTransition implements RouteTransition {
   FadingTransition({this.opaque = false});
 
   @override
-  Route build<T extends Object>(
+  Route<Object> build<T extends Object>(
       RouteSettings settings, RouteBuilder<T> builder, bool fullScreenDialog) {
     return PageRouteBuilder(
       settings: settings,

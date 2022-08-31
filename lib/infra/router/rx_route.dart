@@ -24,7 +24,7 @@ class RxRoute<T extends Object> {
     this.transition = const DefaultTransition(),
   });
 
-  Route<dynamic> build(RouteSettings settings) {
+  Route<Object> build(RouteSettings settings) {
     return transition.build(settings, builder, fullScreenDialogue);
   }
 }

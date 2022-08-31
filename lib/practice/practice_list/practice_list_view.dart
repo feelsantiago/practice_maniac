@@ -8,6 +8,7 @@ import 'package:practice_maniac/components/page_structure.dart';
 import 'package:practice_maniac/infra/mvvm/view_list.dart';
 import 'package:practice_maniac/practice/practice.dart';
 import 'package:practice_maniac/practice/practice_list/practice_list_view_model.dart';
+import 'package:practice_maniac/practice/practice_routes.dart';
 import 'package:practice_maniac/utils/widget_selector.dart';
 
 class PracticeListView extends ViewList<Practice, PracticeListViewModel> {
@@ -34,7 +35,11 @@ class PracticeListView extends ViewList<Practice, PracticeListViewModel> {
             ),
           ),
           AddBox(
-            onTap: viewModel.create,
+            // onTap: viewModel.create,
+            onTap: () {
+              // navigator.go(PracticeRoutes().create);
+              viewModel.create();
+            },
           ),
         ],
       ),

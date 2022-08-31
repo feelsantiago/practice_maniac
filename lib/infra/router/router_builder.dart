@@ -19,7 +19,7 @@ class RouterBuilder {
             (route) => routes.addAll({route.path: route}));
   }
 
-  Route find(RouteSettings settings) {
+  Route<Object> find(RouteSettings settings) {
     final route = routes[settings.name]!;
     return route.build(settings);
   }
