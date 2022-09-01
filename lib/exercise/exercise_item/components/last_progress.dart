@@ -3,18 +3,20 @@ import 'package:practice_maniac/progress/components/progress_detail.dart';
 import 'package:practice_maniac/progress/progress.dart';
 import 'package:collection/collection.dart';
 import 'package:practice_maniac/utils/defined.dart';
-import 'package:practice_maniac/utils/widget_selector.dart';
+import 'package:practice_maniac/utils/visibility_selector.dart';
 
 class LastProgress extends StatelessWidget {
   final List<Progress> progresses;
   final String measure;
 
-  const LastProgress({Key? key, required this.progresses, required this.measure}) : super(key: key);
+  const LastProgress(
+      {Key? key, required this.progresses, required this.measure})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final progress = Defined(progresses.lastOrNull);
-    return WidgetSelector(
+    return VisibilitySelector(
       selector: progress.exist(),
       onTrue: LazySelector(
         (_) => ProgressDetail(

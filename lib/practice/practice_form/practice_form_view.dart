@@ -5,11 +5,26 @@ import 'package:practice_maniac/infra/mvvm.dart';
 import 'package:practice_maniac/practice/domain/practice.dart';
 import 'package:practice_maniac/practice/practice_form/practice_form_view_model.dart';
 import 'package:practice_maniac/utils/form.dart';
+import 'package:practice_maniac/utils/listeners_sink.dart';
 
 class PracticeFormView extends ViewData<Practice, PracticeFormViewModel> {
+  final ListenersSink _listeners = ListenersSink();
+
   Practice get practice => viewModel.model.value;
 
   PracticeFormView({Key? key}) : super(key: key, model: Practice.empty());
+
+  @override
+  dynamic onInit() {
+    _listeners.sink = viewModel.create.results.listen((event) {
+      navigator.pop();
+    });
+  }
+
+  @override
+  void dispose() {
+    _listeners.cancel();
+  }
 
   @override
   Widget build(BuildContext context) {

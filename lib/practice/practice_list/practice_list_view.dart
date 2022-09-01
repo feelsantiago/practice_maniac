@@ -8,12 +8,18 @@ import 'package:practice_maniac/components/page_structure.dart';
 import 'package:practice_maniac/infra/mvvm/view_list.dart';
 import 'package:practice_maniac/practice/domain/practice.dart';
 import 'package:practice_maniac/practice/practice_list/practice_list_view_model.dart';
-import 'package:practice_maniac/utils/widget_selector.dart';
+import 'package:practice_maniac/utils/visibility_selector.dart';
+import 'package:rx_widgets/rx_widgets.dart';
 
 class PracticeListView extends ViewList<Practice, PracticeListViewModel> {
   RxList<Practice> get practices => viewModel.model;
 
   PracticeListView({Key? key}) : super(key: key, model: []);
+
+  @override
+  void onVisibilityGained() {
+    viewModel.fetch();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,14 +30,18 @@ class PracticeListView extends ViewList<Practice, PracticeListViewModel> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Disclaimer(text: 'Welcome Back,'),
-          WidgetSelector(
-            selector: practices.isEmpty,
-            onTrue: SimpleSelector(
-              const Disclaimer(
-                  text: 'Create practices to tracker your progress'),
-            ),
-            onFalse: SimpleSelector(
-              const Disclaimer(text: 'Those are your practices'),
+          ReactiveBuilder(
+            stream: practices.onChange,
+            initialData: practices,
+            builder: (context, _) => VisibilitySelector(
+              selector: practices.isEmpty,
+              onTrue: SimpleSelector(
+                const Disclaimer(
+                    text: 'Create practices to tracker your progress'),
+              ),
+              onFalse: SimpleSelector(
+                const Disclaimer(text: 'Those are your practices'),
+              ),
             ),
           ),
           AddBox(
@@ -39,7 +49,43 @@ class PracticeListView extends ViewList<Practice, PracticeListViewModel> {
               viewModel.create();
             },
           ),
+          Expanded(
+            child: ReactiveBuilder(
+              stream: practices.onChange,
+              initialData: practices,
+              builder: (context, _) => CustomScrollView(
+                slivers: [
+                  SliverPadding(
+                    padding: const EdgeInsets.all(20),
+                    sliver: SliverList(
+                      delegate: SliverChildListDelegate(
+                        _practices().toList(),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
         ],
+      ),
+    );
+  }
+
+  Iterable<Widget> _practices() {
+    return practices.map(
+      (practice) => Container(
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: Colors.black,
+            style: BorderStyle.solid,
+          ),
+          borderRadius: const BorderRadius.all(
+            Radius.circular(10),
+          ),
+          color: Color(practice.color),
+        ),
+        child: Text(practice.name),
       ),
     );
   }

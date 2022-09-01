@@ -26,12 +26,12 @@ class LazySelector implements Selector {
   }
 }
 
-class WidgetSelector extends StatelessWidget {
+class VisibilitySelector extends StatelessWidget {
   final bool selector;
   final Selector onTrue;
   final Selector onFalse;
 
-  const WidgetSelector({
+  const VisibilitySelector({
     Key? key,
     required this.selector,
     required this.onTrue,

@@ -96,7 +96,7 @@ class _ViewState<T extends ViewModel> extends State<View<T>> {
       onFocusLost: widget.onFocusLost,
       onFocusGained: widget.onFocusGained,
       onVisibilityLost: widget.onVisibilityLost,
-      onVisibilityGained: widget.onForegroundGained,
+      onVisibilityGained: widget.onVisibilityGained,
       onForegroundLost: widget.onForegroundLost,
       onForegroundGained: widget.onForegroundGained,
       child: ReactiveBuilder<bool>(
