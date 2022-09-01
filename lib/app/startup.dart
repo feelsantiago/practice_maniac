@@ -10,19 +10,19 @@ import 'package:practice_maniac/infra/router/navigator_stack.dart';
 class Startup {
   final Database _database;
   final NavigationStack _navigationStack;
+  final DatabasePathProvider _path;
 
   Startup(
     this._database,
     this._navigationStack,
-  );
+  ) : _path = DatabasePathProvider();
 
   Future<void> init(Navigation navigation) async {
     _navigationStack.listen(navigation);
 
-    final path = DatabasePathProvider();
-    await path.find();
+    await _path.find();
 
-    _database.init(path);
+    _database.init(_path);
     log('[Startup] - Database ready!');
   }
 }
