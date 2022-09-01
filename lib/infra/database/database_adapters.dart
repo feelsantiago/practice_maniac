@@ -1,7 +1,8 @@
-import 'package:practice_maniac/database/box_adapter.dart';
-import 'package:practice_maniac/database/entity.dart';
 import 'package:practice_maniac/utils/defined.dart';
 import 'package:practice_maniac/utils/list_to_map.dart';
+
+import 'box_adapter.dart';
+import 'entity.dart';
 
 class DatabaseAdapters {
   late final Map<String, BoxAdapter> boxes;

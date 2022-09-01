@@ -1,7 +1,7 @@
 import 'package:hive/hive.dart';
 import 'package:injectable/injectable.dart';
-import 'package:practice_maniac/database/database.dart';
 
+import 'database.dart';
 import 'entity.dart';
 
 @injectable

@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:practice_maniac/configuration/injection.dart';
+import 'package:practice_maniac/infra/configuration/injection.dart';
 import 'package:practice_maniac/infra/mvvm.dart';
 import 'package:practice_maniac/infra/mvvm/view_model_provider.dart';
 import 'package:focus_detector/focus_detector.dart';

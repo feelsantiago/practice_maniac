@@ -1,5 +1,5 @@
 import 'package:hive/hive.dart';
-import 'package:practice_maniac/database/embedded_entity.dart';
+import 'package:practice_maniac/infra/database/embedded_entity.dart';
 
 part 'progress.g.dart';
 

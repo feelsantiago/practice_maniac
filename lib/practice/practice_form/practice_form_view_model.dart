@@ -13,8 +13,9 @@ class PracticeFormViewModel extends ViewModelData<Practice> {
   late RxCommand<void, void> submit;
 
   PracticeFormViewModel.inject(this.form, this.colors);
-  PracticeFormViewModel({this.colors = const BlockColors()})
-      : form = FormBuilder() {
+  PracticeFormViewModel()
+      : form = FormBuilder(),
+        colors = const BlockColors() {
     submit = RxCommand.createSyncNoParamNoResult(_onSubmit);
   }
 

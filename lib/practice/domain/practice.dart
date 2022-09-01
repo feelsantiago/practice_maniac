@@ -1,6 +1,6 @@
 import 'package:hive/hive.dart';
-import 'package:practice_maniac/database/entity.dart';
 import 'package:practice_maniac/exercise/exercise.dart';
+import 'package:practice_maniac/infra/database/entity.dart';
 
 part 'practice.g.dart';
 

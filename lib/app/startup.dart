@@ -1,8 +1,8 @@
 import 'dart:developer';
 
 import 'package:injectable/injectable.dart';
-import 'package:practice_maniac/database/database.dart';
-import 'package:practice_maniac/database/database_path_provider.dart';
+import 'package:practice_maniac/infra/database/database.dart';
+import 'package:practice_maniac/infra/database/database_path_provider.dart';
 import 'package:practice_maniac/infra/router/navigation_observer.dart';
 import 'package:practice_maniac/infra/router/navigator_stack.dart';
 
