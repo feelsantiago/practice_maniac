@@ -12,7 +12,8 @@ class ExerciseService {
   ExerciseService(this._repository);
 
   Stream<List<Exercise>> find() {
-    return Stream.fromFuture(_repository.getAll<Practice>())
+    return _repository
+        .getAll<Practice>()
         .doOnData((event) => print(event))
         .map((practice) => practice.first.exercises);
   }

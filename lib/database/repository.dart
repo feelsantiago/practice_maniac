@@ -1,3 +1,4 @@
+import 'package:hive/hive.dart';
 import 'package:injectable/injectable.dart';
 import 'package:practice_maniac/database/database.dart';
 
@@ -9,39 +10,39 @@ class Repository {
 
   Repository(this._database);
 
-  Future<T> create<T extends Entity>(T entity) async {
-    final box = await _database.box<T>();
+  Stream<T> create<T extends Entity>(T entity) {
+    return _box<T>().map((box) {
+      entity.createdAt = DateTime.now();
+      box.put(entity.id, entity);
 
-    entity.createdAt = DateTime.now();
-    box.put(entity.id, entity);
-
-    return entity;
+      return entity;
+    });
   }
 
-  Future<T> update<T extends Entity>(T entity) async {
-    final box = await _database.box<T>();
-
-    box.put(entity.id, entity);
-    return entity;
+  Stream<T> update<T extends Entity>(T entity) {
+    return _box<T>().map((box) {
+      box.put(entity.id, entity);
+      return entity;
+    });
   }
 
-  Future<T?> getById<T extends Entity>(String id) async {
-    final box = await _database.box<T>();
-    return box.get(id);
+  Stream<T?> getById<T extends Entity>(String id) {
+    return _box<T>().map((box) => box.get(id));
   }
 
-  Future<List<T>> getAll<T extends Entity>() async {
-    final box = await _database.box<T>();
-    return box.values.toList();
+  Stream<List<T>> getAll<T extends Entity>() {
+    return _box<T>().map((box) => box.values.toList());
   }
 
-  Future<void> removeById<T extends Entity>(String id) async {
-    final box = await _database.box<T>();
-    return box.delete(id);
+  Stream<void> removeById<T extends Entity>(String id) {
+    return _box<T>().map((box) => box.delete(id));
   }
 
-  Future<void> removeMany<T extends Entity>(List<String> keys) async {
-    final box = await _database.box<T>();
-    return box.deleteAll(keys);
+  Stream<void> removeMany<T extends Entity>(List<String> ids) {
+    return _box<T>().map((box) => box.deleteAll(ids));
+  }
+
+  Stream<Box<T>> _box<T extends Entity>() {
+    return Stream.fromFuture(_database.box<T>());
   }
 }
