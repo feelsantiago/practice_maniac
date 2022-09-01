@@ -1,6 +1,6 @@
 import 'package:injectable/injectable.dart';
 import 'package:practice_maniac/database/repository.dart';
-import 'package:practice_maniac/practice/practice.dart';
+import 'package:practice_maniac/practice/domain/practice.dart';
 import 'package:rxdart/rxdart.dart';
 
 import 'exercise.dart';

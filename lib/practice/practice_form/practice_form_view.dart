@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:practice_maniac/components/page_structure.dart';
 import 'package:practice_maniac/infra/mvvm.dart';
-import 'package:practice_maniac/practice/practice.dart';
+import 'package:practice_maniac/practice/domain/practice.dart';
 import 'package:practice_maniac/practice/practice_form/practice_form_view_model.dart';
 import 'package:practice_maniac/utils/form.dart';
 

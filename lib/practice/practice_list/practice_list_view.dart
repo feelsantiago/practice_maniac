@@ -6,7 +6,7 @@ import 'package:practice_maniac/components/add_box.dart';
 import 'package:practice_maniac/components/disclaimer.dart';
 import 'package:practice_maniac/components/page_structure.dart';
 import 'package:practice_maniac/infra/mvvm/view_list.dart';
-import 'package:practice_maniac/practice/practice.dart';
+import 'package:practice_maniac/practice/domain/practice.dart';
 import 'package:practice_maniac/practice/practice_list/practice_list_view_model.dart';
 import 'package:practice_maniac/utils/widget_selector.dart';
 
