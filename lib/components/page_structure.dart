@@ -4,12 +4,14 @@ class PageStructure extends StatelessWidget {
   final String title;
   final Widget body;
   final Widget? leading;
+  final Widget? floatingButton;
 
   const PageStructure({
     Key? key,
     required this.body,
     required this.title,
     this.leading,
+    this.floatingButton,
   }) : super(key: key);
 
   @override
@@ -31,6 +33,7 @@ class PageStructure extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: body,
       ),
+      floatingActionButton: floatingButton,
     );
   }
 }

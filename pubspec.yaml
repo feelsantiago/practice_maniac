@@ -46,6 +46,7 @@ dependencies:
     uuid: ^3.0.6
     path_provider: ^2.0.11
     dotted_border: ^2.0.0+2
+    flutter_colorpicker: ^1.0.3
 
 dev_dependencies:
     flutter_test:

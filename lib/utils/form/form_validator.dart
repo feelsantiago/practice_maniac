@@ -58,7 +58,7 @@ class FormValidator<T> {
             orElse: () => ValidatorSuccess(),
           );
 
-      valid.error();
+      return valid.error();
     };
   }
 }

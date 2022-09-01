@@ -1,7 +1,44 @@
 import 'dart:ui';
 
+import 'package:flutter/material.dart';
+import 'package:practice_maniac/utils/not.dart';
 import 'package:random_color/random_color.dart';
 import 'package:practice_maniac/utils/defined.dart';
+
+class BlockColors {
+  final List<Color> all = const [
+    Colors.red,
+    Colors.pink,
+    Colors.purple,
+    Colors.deepPurple,
+    Colors.indigo,
+    Colors.blue,
+    Colors.lightBlue,
+    Colors.cyan,
+    Colors.teal,
+    Colors.green,
+    Colors.lightGreen,
+    Colors.lime,
+    Colors.yellow,
+    Colors.amber,
+    Colors.orange,
+    Colors.deepOrange,
+    Colors.brown,
+    Colors.grey,
+    Colors.blueGrey,
+    Colors.black,
+  ];
+
+  const BlockColors();
+
+  List<Color> exclude(List<Color> others) {
+    return all
+        .where(
+          (color) => Not(others.contains(color)).value,
+        )
+        .toList();
+  }
+}
 
 class UniqueColorList {
   final Iterable<Color> colors;
