@@ -5,6 +5,7 @@ import 'package:practice_maniac/practice/practice_list/practice_list_view.dart';
 class PracticeRoutes implements RouteModule {
   final String practice = 'practice';
   final String create = 'practice-create';
+  final String detail = 'practice-detail';
 
   @override
   List<RxRoute> build() {

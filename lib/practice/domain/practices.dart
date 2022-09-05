@@ -13,7 +13,7 @@ class Practices {
     return provider.create(practice);
   }
 
-  Stream<List<Practice>> fetch() {
+  Stream<List<Practice>> all() {
     return provider.getAll<Practice>();
   }
 }

@@ -26,6 +26,6 @@ class PracticeListViewModel extends ViewModelList<Practice> {
   }
 
   Stream<List<Practice>> _fetch(void param) {
-    return practices.fetch().doOnData((data) => model.assignAll(data));
+    return practices.all().doOnData((data) => model.assignAll(data));
   }
 }
