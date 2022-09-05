@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:practice_maniac/exercise/exercise.dart';
 import 'package:practice_maniac/infra/database/entity.dart';
@@ -28,4 +29,8 @@ class Practice extends Entity {
       : name = 'Empty',
         color = 1,
         exercises = [];
+
+  Color paint() {
+    return Color(color);
+  }
 }

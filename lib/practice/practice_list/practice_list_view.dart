@@ -56,12 +56,9 @@ class PracticeListView extends ViewList<Practice, PracticeListViewModel> {
               initialData: practices,
               builder: (context, _) => CustomScrollView(
                 slivers: [
-                  SliverPadding(
-                    padding: const EdgeInsets.all(20),
-                    sliver: SliverList(
-                      delegate: SliverChildListDelegate(
-                        _practices().toList(),
-                      ),
+                  SliverList(
+                    delegate: SliverChildListDelegate(
+                      _practices().toList(),
                     ),
                   ),
                 ],
