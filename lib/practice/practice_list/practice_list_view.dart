@@ -72,7 +72,10 @@ class PracticeListView extends ViewList<Practice, PracticeListViewModel> {
 
   Iterable<Widget> _practices() {
     return practices.map(
-      (practice) => PracticeItemView(practice: practice),
+      (practice) => PracticeItemView(
+        key: Key(practice.id),
+        practice: practice,
+      ),
     );
   }
 }

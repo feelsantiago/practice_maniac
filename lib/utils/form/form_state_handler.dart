@@ -1,14 +1,22 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 abstract class FormStateHandler {
   bool validate();
   void reset();
   void save();
+  void submit();
+  Stream<bool> status();
+  Stream<void> saved();
   GlobalKey<FormState> key();
 }
 
 class FormBuilder implements FormStateHandler {
   final GlobalKey<FormState> _state = GlobalKey();
+
+  final StreamController<bool> _status = StreamController();
+  final StreamController<void> _saved = StreamController();
 
   BuildContext get context => _state.currentContext!;
   FormState get state => _state.currentState!;
@@ -19,8 +27,18 @@ class FormBuilder implements FormStateHandler {
   }
 
   @override
+  void submit() {
+    if (validate()) {
+      save();
+    }
+  }
+
+  @override
   bool validate() {
-    return state.validate();
+    final valid = state.validate();
+    _status.sink.add(valid);
+
+    return valid;
   }
 
   @override
@@ -31,5 +49,16 @@ class FormBuilder implements FormStateHandler {
   @override
   void save() {
     state.save();
+    _saved.sink.add(null);
+  }
+
+  @override
+  Stream<bool> status() {
+    return _status.stream;
+  }
+
+  @override
+  Stream<void> saved() {
+    return _saved.stream;
   }
 }

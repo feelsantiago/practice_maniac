@@ -7,4 +7,5 @@ abstract class DataProvider {
   Stream<List<T>> getAll<T extends Entity>();
   Stream<void> removeById<T extends Entity>(String id);
   Stream<void> removeMany<T extends Entity>(List<String> ids);
+  Stream<void> clear<T extends Entity>();
 }

@@ -16,4 +16,8 @@ class Practices {
   Stream<List<Practice>> all() {
     return provider.getAll<Practice>();
   }
+
+  Stream<void> clear() {
+    return provider.clear<Practice>();
+  }
 }

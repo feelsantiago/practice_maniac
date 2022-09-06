@@ -49,6 +49,11 @@ class Repository implements DataProvider {
     return _box<T>().map((box) => box.deleteAll(ids));
   }
 
+  @override
+  Stream<void> clear<T extends Entity>() {
+    return _box<T>().map((box) => box.clear());
+  }
+
   Stream<Box<T>> _box<T extends Entity>() {
     return Stream.fromFuture(_database.box<T>());
   }
