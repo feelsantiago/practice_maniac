@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:practice_maniac/utils/form/form_state_handler.dart';
 
 class RxForm extends StatelessWidget {
+  final bool autoSave;
   final FormStateHandler form;
   final AutovalidateMode validate;
   final Widget child;
@@ -10,7 +11,8 @@ class RxForm extends StatelessWidget {
     Key? key,
     required this.form,
     required this.child,
-    this.validate = AutovalidateMode.disabled,
+    this.autoSave = false,
+    this.validate = AutovalidateMode.always,
   }) : super(key: key);
 
   @override
@@ -19,7 +21,7 @@ class RxForm extends StatelessWidget {
       key: form.key(),
       autovalidateMode: validate,
       onChanged: () {
-        if (validate == AutovalidateMode.always) {
+        if (autoSave) {
           form.validate();
           form.save();
         }
