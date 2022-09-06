@@ -7,8 +7,8 @@ import 'package:practice_maniac/practice/practice_item/practice_item_view_model.
 class PracticeItemView extends ViewData<Practice, PracticeItemViewModel> {
   Practice get practice => viewModel.model.value;
 
-  PracticeItemView({Key? key, required Practice practice})
-      : super(key: key, model: practice);
+  PracticeItemView({required Practice practice})
+      : super(key: Key(practice.id), model: practice);
 
   @override
   Widget build(BuildContext context) {
