@@ -79,4 +79,9 @@ class NavigationStack {
         .map((event) => RouteSettings(name: event.to))
         .listen((route) => remove(route));
   }
+
+  @disposeMethod
+  void dispose() {
+    _listeners.cancel();
+  }
 }
