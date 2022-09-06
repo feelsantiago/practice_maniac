@@ -1,5 +1,6 @@
 import 'package:injectable/injectable.dart';
 import 'package:practice_maniac/infra/database/data_provider.dart';
+import 'package:practice_maniac/utils/history.dart';
 
 import 'practice.dart';
 
@@ -14,7 +15,9 @@ class Practices {
   }
 
   Stream<List<Practice>> all() {
-    return provider.getAll<Practice>();
+    return provider
+        .getAll<Practice>()
+        .map((practices) => History(practices).descendent<Practice>());
   }
 
   Stream<void> clear() {

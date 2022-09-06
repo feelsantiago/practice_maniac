@@ -72,8 +72,6 @@ class PracticeListView extends ViewList<Practice, PracticeListViewModel> {
   }
 
   Iterable<Widget> _practices() {
-    return History(practices)
-        .descendent()
-        .map((practice) => PracticeItemView(practice: practice));
+    return practices.map((practice) => PracticeItemView(practice: practice));
   }
 }
