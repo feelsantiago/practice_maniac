@@ -20,4 +20,8 @@ class Practices {
   Stream<void> clear() {
     return provider.clear<Practice>();
   }
+
+  Stream<void> remove(Practice practice) {
+    return provider.removeById<Practice>(practice.id);
+  }
 }

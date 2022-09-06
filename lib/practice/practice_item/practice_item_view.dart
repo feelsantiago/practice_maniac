@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:practice_maniac/components/rounded_box.dart';
 import 'package:practice_maniac/infra/mvvm.dart';
 import 'package:practice_maniac/practice/domain/practice.dart';
@@ -12,16 +13,66 @@ class PracticeItemView extends ViewData<Practice, PracticeItemViewModel> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5.0),
-      child: RoundedBox(
-        color: practice.paint(),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _title(),
-          ],
+    return Slidable(
+      key: ValueKey(practice),
+      startActionPane: ActionPane(
+        motion: const ScrollMotion(),
+        dragDismissible: true,
+        openThreshold: 0.9,
+        dismissible: DismissiblePane(
+          dismissThreshold: 0.1,
+          closeOnCancel: true,
+          onDismissed: () {
+            viewModel.remove();
+          },
+        ),
+        children: [
+          SlidableAction(
+            icon: Icons.delete,
+            backgroundColor: Colors.transparent,
+            onPressed: (_) {
+              viewModel.remove();
+            },
+          ),
+        ],
+      ),
+      endActionPane: ActionPane(
+        motion: const ScrollMotion(),
+        dragDismissible: true,
+        openThreshold: 0.9,
+        dismissible: DismissiblePane(
+          dismissThreshold: 0.1,
+          confirmDismiss: () async {
+            return false;
+          },
+          closeOnCancel: true,
+          onDismissed: () {},
+        ),
+        children: [
+          SlidableAction(
+            icon: Icons.edit,
+            backgroundColor: Colors.transparent,
+            onPressed: (_) {
+              print('Edit');
+            },
+          ),
+        ],
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 5.0),
+        child: RoundedBox(
+          color: practice.paint(),
+          child: Row(
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _title(),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
