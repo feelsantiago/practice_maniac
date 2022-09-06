@@ -139,6 +139,7 @@ class _ViewState<T extends ViewModel> extends State<View<T>> {
   @override
   void dispose() {
     widget.dispose();
+    widget.viewModel.onDispose();
     _onUpdateWidgetController.close();
     super.dispose();
   }
