@@ -3,7 +3,7 @@ import 'package:practice_maniac/progress/components/progress_detail.dart';
 import 'package:practice_maniac/progress/progress.dart';
 import 'package:collection/collection.dart';
 import 'package:practice_maniac/utils/defined.dart';
-import 'package:practice_maniac/utils/visibility_selector.dart';
+import 'package:practice_maniac/components/visibility_selector.dart';
 
 class LastProgress extends StatelessWidget {
   final List<Progress> progresses;
