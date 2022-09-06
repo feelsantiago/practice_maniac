@@ -50,7 +50,7 @@ class PracticeFormView extends ViewData<Practice, PracticeFormViewModel> {
         tooltip: 'Save',
         child: const Icon(Icons.done),
         onPressed: () {
-          viewModel.form.submit();
+          viewModel.submit();
         },
       ),
     );
