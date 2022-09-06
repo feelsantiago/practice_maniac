@@ -25,8 +25,10 @@ class PracticeFormViewModel extends ViewModelData<Practice> {
       : form = FormBuilder(),
         colors = const BlockColors() {
     submit = RxCommand.createSyncNoParamNoResult(form.submit);
-    create = RxCommand.createFromStream((_) => _onCreate(),
-        restriction: form.status());
+    create = RxCommand.createFromStream(
+      (_) => _onCreate(),
+      restriction: form.status(),
+    );
   }
 
   @override
