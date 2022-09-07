@@ -1,7 +1,6 @@
 import 'package:injectable/injectable.dart';
 import 'package:practice_maniac/infra/database/data_provider.dart';
 import 'package:practice_maniac/utils/history.dart';
-import 'package:rxdart/rxdart.dart';
 
 import 'practice.dart';
 
@@ -18,10 +17,7 @@ class Practices {
   Stream<List<Practice>> all() {
     return provider
         .getAll<Practice>()
-        .map((practices) => History(practices).descendent<Practice>())
-        .doOnError((p0, p1) {
-      print(p0);
-    }).doOnData((practices) => print(practices.length));
+        .map((practices) => History(practices).descendent<Practice>());
   }
 
   Stream<void> clear() {

@@ -7,17 +7,23 @@ import 'package:practice_maniac/practice/domain/practice.dart';
 import 'package:practice_maniac/practice/practice_form/practice_form_view_model.dart';
 import 'package:practice_maniac/utils/defined.dart';
 import 'package:practice_maniac/utils/form.dart';
+import 'package:practice_maniac/utils/text_initial_value.dart';
 
 class PracticeFormView extends ViewData<Practice, PracticeFormViewModel> {
-  final bool edit;
+  Practice get practice => viewModel.practice;
 
-  Practice get practice => viewModel.model.value;
+  final bool edit;
 
   PracticeFormView({
     Key? key,
     Practice? practice,
   })  : edit = Defined(practice).exist(),
         super(key: key, model: practice ?? Practice.empty());
+
+  @override
+  dynamic onInit() {
+    viewModel.edit = edit;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +34,7 @@ class PracticeFormView extends ViewData<Practice, PracticeFormViewModel> {
         child: Column(
           children: [
             TextFormField(
-              initialValue: edit ? practice.name : null,
+              initialValue: TextInitialValue(practice.name).value(),
               decoration: const InputDecoration(
                 hintText: 'What do you want to practice?',
               ),
@@ -36,7 +42,7 @@ class PracticeFormView extends ViewData<Practice, PracticeFormViewModel> {
                 EmptyTextValidator(),
               ).register(),
               onSaved: (name) {
-                practice.name = name ?? '';
+                viewModel.practice.name = name ?? '';
               },
             ),
             const SizedBox(
@@ -47,7 +53,7 @@ class PracticeFormView extends ViewData<Practice, PracticeFormViewModel> {
                 pickerColor: Color(practice.color),
                 availableColors: viewModel.colors.exclude([Colors.black]),
                 onColorChanged: (color) {
-                  practice.color = color.value;
+                  viewModel.practice.color = color.value;
                 },
               ),
             ),

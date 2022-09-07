@@ -15,8 +15,8 @@ abstract class FormStateHandler {
 class FormBuilder implements FormStateHandler {
   final GlobalKey<FormState> _state = GlobalKey();
 
-  final StreamController<bool> _status = StreamController();
-  final StreamController<void> _saved = StreamController();
+  final StreamController<bool> _status = StreamController.broadcast();
+  final StreamController<void> _saved = StreamController.broadcast();
 
   BuildContext get context => _state.currentContext!;
   FormState get state => _state.currentState!;

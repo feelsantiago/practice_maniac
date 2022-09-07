@@ -16,25 +16,45 @@ class PracticeFormViewModel extends ViewModelData<Practice> {
   final Practices practices;
   final INavigator _navigator;
 
+  late final bool edit;
+  Practice practice = Practice.empty();
+
   late final RxCommand<void, void> submit;
   late final RxCommand<void, void> create;
+  late final RxCommand<void, void> update;
 
   final ListenersSink _listeners = ListenersSink();
 
   PracticeFormViewModel(this.practices, this._navigator)
       : form = FormBuilder(),
         colors = const BlockColors() {
-    submit = RxCommand.createSyncNoParamNoResult(form.submit);
+    submit = RxCommand.createSyncNoParamNoResult(_onSubmit);
     create = RxCommand.createFromStream(
       (_) => _onCreate(),
+      restriction: form.status(),
+    );
+    update = RxCommand.createFromStream(
+      (_) => _onUpdate(),
       restriction: form.status(),
     );
   }
 
   @override
   dynamic onInit() {
-    model.value.color = colors.all.first.value;
-    _listeners.sink = form.saved().listen((_) => create());
+    int base = colors.all.first.value;
+
+    practice = practice.copyWith(
+      name: model.value.name,
+      color: edit ? model.value.color : base,
+    );
+
+    _listeners.sink = form.saved().listen((_) => edit ? update() : create());
+    _listeners.sink = MergeStream([
+      create.results,
+      update.results,
+    ]).listen((value) {
+      _navigator.pop();
+    });
   }
 
   @override
@@ -42,7 +62,16 @@ class PracticeFormViewModel extends ViewModelData<Practice> {
     _listeners.cancel();
   }
 
+  void _onSubmit() {
+    form.submit();
+    model.value.edit(practice);
+  }
+
   Stream<Practice> _onCreate() {
-    return practices.add(model.value).doOnData((_) => _navigator.pop());
+    return practices.add(model.value);
+  }
+
+  Stream<Practice> _onUpdate() {
+    return model.value.update();
   }
 }

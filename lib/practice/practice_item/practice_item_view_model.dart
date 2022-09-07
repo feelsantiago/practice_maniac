@@ -24,6 +24,9 @@ class PracticeItemViewModel extends ViewModelData<Practice> {
   }
 
   void _onEdit() {
-    navigator.go(PracticeRoutes().detail, arguments: model.value);
+    navigator.go(
+      PracticeRoutes().detail,
+      arguments: model.value,
+    );
   }
 }

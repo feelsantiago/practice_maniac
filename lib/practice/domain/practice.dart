@@ -33,4 +33,29 @@ class Practice extends Entity {
   Color paint() {
     return Color(color);
   }
+
+  void edit(Practice practice) {
+    name = practice.name;
+    color = practice.color;
+  }
+
+  Stream<Practice> update() {
+    return Stream.fromFuture(save()).map((_) => this);
+  }
+
+  Practice copyWith({
+    String? name,
+    int? color,
+    List<Exercise>? exercises,
+    String? id,
+    DateTime? createdAt,
+  }) {
+    return Practice(
+      name: name ?? this.name,
+      color: color ?? this.color,
+      exercises: exercises ?? this.exercises,
+      id: id ?? this.id,
+      createdAt: createdAt ?? this.createdAt,
+    );
+  }
 }
