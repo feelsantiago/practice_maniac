@@ -1,4 +1,5 @@
 import 'package:practice_maniac/infra/router/rx_route.dart';
+import 'package:practice_maniac/practice/domain/practice.dart';
 import 'package:practice_maniac/practice/practice_form/practice_form_view.dart';
 import 'package:practice_maniac/practice/practice_list/practice_list_view.dart';
 
@@ -18,6 +19,12 @@ class PracticeRoutes implements RouteModule {
         path: create,
         builder: (context, _) => PracticeFormView(),
       ),
+      RxRoute<Practice>(
+        path: detail,
+        builder: (context, practice) => PracticeFormView(
+          practice: practice,
+        ),
+      )
     ];
   }
 }

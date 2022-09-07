@@ -43,13 +43,13 @@ class History {
     final sorted = [...items];
     sorted.sort((a, b) => Before(a.date()).compareTo(b.date()));
 
-    return sorted as List<T>;
+    return sorted.cast<T>();
   }
 
   List<T> descendent<T>() {
     final sorted = [...items];
     sorted.sort((a, b) => After(b.date()).compareTo(a.date()));
 
-    return sorted as List<T>;
+    return sorted.cast<T>();
   }
 }

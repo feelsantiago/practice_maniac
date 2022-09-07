@@ -10,7 +10,6 @@ import 'package:practice_maniac/practice/domain/practice.dart';
 import 'package:practice_maniac/practice/practice_item/practice_item_view.dart';
 import 'package:practice_maniac/practice/practice_list/practice_list_view_model.dart';
 import 'package:practice_maniac/components/visibility_selector.dart';
-import 'package:practice_maniac/utils/history.dart';
 import 'package:rx_widgets/rx_widgets.dart';
 
 class PracticeListView extends ViewList<Practice, PracticeListViewModel> {

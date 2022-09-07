@@ -43,6 +43,7 @@ class PracticeItemView extends ViewData<Practice, PracticeItemViewModel> {
         dismissible: DismissiblePane(
           dismissThreshold: 0.1,
           confirmDismiss: () async {
+            viewModel.edit();
             return false;
           },
           closeOnCancel: true,
@@ -53,7 +54,7 @@ class PracticeItemView extends ViewData<Practice, PracticeItemViewModel> {
             icon: Icons.edit,
             backgroundColor: Colors.transparent,
             onPressed: (_) {
-              print('Edit');
+              viewModel.edit();
             },
           ),
         ],
