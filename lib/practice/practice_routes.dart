@@ -15,7 +15,7 @@ class PracticeRoutes implements RouteModule {
         path: practice,
         builder: (context, _) => PracticeListView(),
       ),
-      RxRoute(
+      RxRoute<Practice>(
         path: create,
         builder: (context, _) => PracticeFormView(),
       ),

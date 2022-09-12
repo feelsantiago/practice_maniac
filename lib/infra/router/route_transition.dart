@@ -12,7 +12,7 @@ class DefaultTransition implements RouteTransition {
   @override
   Route<Object> build<T extends Object>(
       RouteSettings settings, RouteBuilder<T> builder, bool fullScreenDialog) {
-    return MaterialPageRoute(
+    return MaterialPageRoute<T>(
       settings: settings,
       builder: (context) => builder(context, settings.arguments as T?),
       fullscreenDialog: fullScreenDialog,

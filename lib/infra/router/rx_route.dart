@@ -25,6 +25,6 @@ class RxRoute<T extends Object> {
   });
 
   Route<Object> build(RouteSettings settings) {
-    return transition.build(settings, builder, fullScreenDialogue);
+    return transition.build<T>(settings, builder, fullScreenDialogue);
   }
 }
