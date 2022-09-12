@@ -4,26 +4,19 @@ import 'package:practice_maniac/components/page_structure.dart';
 import 'package:practice_maniac/components/rx_form.dart';
 import 'package:practice_maniac/infra/mvvm.dart';
 import 'package:practice_maniac/practice/domain/practice.dart';
+import 'package:practice_maniac/practice/practice_form/practice_form_model.dart';
 import 'package:practice_maniac/practice/practice_form/practice_form_view_model.dart';
-import 'package:practice_maniac/utils/defined.dart';
 import 'package:practice_maniac/utils/form.dart';
 import 'package:practice_maniac/utils/text_initial_value.dart';
 
-class PracticeFormView extends ViewData<Practice, PracticeFormViewModel> {
-  Practice get practice => viewModel.practice;
-
-  final bool edit;
+class PracticeFormView
+    extends ViewData<PracticeFormModel, PracticeFormViewModel> {
+  PracticeFormModel get practice => viewModel.model.value;
 
   PracticeFormView({
     Key? key,
     Practice? practice,
-  })  : edit = Defined(practice).exist(),
-        super(key: key, model: practice ?? Practice.empty());
-
-  @override
-  dynamic onInit() {
-    viewModel.edit = edit;
-  }
+  }) : super(key: key, model: PracticeFormModel.create(practice));
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +27,7 @@ class PracticeFormView extends ViewData<Practice, PracticeFormViewModel> {
         child: Column(
           children: [
             TextFormField(
-              initialValue: TextInitialValue(practice.name).value(),
+              initialValue: TextInitialValue(practice.name.value).value(),
               decoration: const InputDecoration(
                 hintText: 'What do you want to practice?',
               ),
@@ -42,7 +35,7 @@ class PracticeFormView extends ViewData<Practice, PracticeFormViewModel> {
                 EmptyTextValidator(),
               ).register(),
               onSaved: (name) {
-                viewModel.practice.name = name ?? '';
+                practice.name.value = name ?? '';
               },
             ),
             const SizedBox(
@@ -50,10 +43,10 @@ class PracticeFormView extends ViewData<Practice, PracticeFormViewModel> {
             ),
             Expanded(
               child: BlockPicker(
-                pickerColor: Color(practice.color),
+                pickerColor: practice.color.value,
                 availableColors: viewModel.colors.exclude([Colors.black]),
                 onColorChanged: (color) {
-                  viewModel.practice.color = color.value;
+                  practice.color.value = color;
                 },
               ),
             ),
