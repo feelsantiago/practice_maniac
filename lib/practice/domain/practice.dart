@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:practice_maniac/exercise/exercise.dart';
 import 'package:practice_maniac/infra/database/entity.dart';
+import 'package:practice_maniac/utils/empty_string.dart';
 
 part 'practice.g.dart';
 
@@ -26,7 +27,7 @@ class Practice extends Entity {
         super(id: id, createdAt: createdAt);
 
   Practice.empty()
-      : name = 'Empty',
+      : name = EmptyString.empty(),
         color = 1,
         exercises = [];
 

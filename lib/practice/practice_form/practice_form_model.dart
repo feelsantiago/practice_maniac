@@ -3,6 +3,7 @@ import 'package:observable_ish/observable_ish.dart';
 import 'package:practice_maniac/practice/domain/practice.dart';
 import 'package:practice_maniac/utils/colors_utils.dart';
 import 'package:practice_maniac/utils/defined.dart';
+import 'package:practice_maniac/utils/empty_string.dart';
 
 class PracticeFormModel {
   RxValue<String> name;
@@ -10,7 +11,7 @@ class PracticeFormModel {
 
   PracticeFormModel(this.name, this.color);
   PracticeFormModel.empty()
-      : name = RxValue('Empty'),
+      : name = RxValue(EmptyString.empty()),
         color = RxValue(const BlockColors().all.first);
 
   PracticeFormModel.from(Practice practice)
