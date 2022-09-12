@@ -20,10 +20,6 @@ class PracticeListViewModel extends ViewModelList<Practice> {
   PracticeListViewModel(this.practices, this._navigator) {
     create = RxCommand.createFromStream((_) => _onCreate());
     fetch = RxCommand.createFromStream(_fetch);
-
-    create.thrownExceptions.listen((event) {
-      print(event);
-    });
   }
 
   Stream<void> _onCreate() {
