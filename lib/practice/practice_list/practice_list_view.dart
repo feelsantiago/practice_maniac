@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:observable_ish/list/list.dart';
 import 'package:practice_maniac/components/add_box.dart';
