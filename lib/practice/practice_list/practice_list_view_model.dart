@@ -4,6 +4,7 @@ import 'package:practice_maniac/infra/router/navigator.dart';
 import 'package:practice_maniac/practice/domain/practice.dart';
 import 'package:practice_maniac/practice/domain/practices.dart';
 import 'package:practice_maniac/practice/practice_routes.dart';
+import 'package:practice_maniac/utils/defined.dart';
 import 'package:rx_command/rx_command.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -17,12 +18,20 @@ class PracticeListViewModel extends ViewModelList<Practice> {
   late final RxCommand<void, List<Practice>> fetch;
 
   PracticeListViewModel(this.practices, this._navigator) {
-    create = RxCommand.createSyncNoParamNoResult(_onCreate);
+    create = RxCommand.createFromStream((_) => _onCreate());
     fetch = RxCommand.createFromStream(_fetch);
+
+    create.thrownExceptions.listen((event) {
+      print(event);
+    });
   }
 
-  void _onCreate() {
-    _navigator.go(PracticeRoutes().create);
+  Stream<void> _onCreate() {
+    return _navigator
+        .go<Practice>(PracticeRoutes().create)
+        .map((practice) => Defined(practice))
+        .where((practice) => practice.exist())
+        .switchMap((practice) => practices.add(practice.get()));
   }
 
   Stream<List<Practice>> _fetch(void param) {

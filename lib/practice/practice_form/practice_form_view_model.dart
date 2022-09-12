@@ -29,7 +29,7 @@ class PracticeFormViewModel extends ViewModelData<PracticeFormModel> {
   @override
   dynamic onInit() {
     _listeners.sink =
-        form.saved().listen((_) => _navigator.pop(practice.practice()));
+        form.saved().listen((_) => _navigator.pop(practice.value()));
   }
 
   @override

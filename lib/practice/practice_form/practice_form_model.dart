@@ -27,7 +27,7 @@ class PracticeFormModel {
     return PracticeFormModel.empty();
   }
 
-  Practice practice() {
+  Practice value() {
     return Practice(
       name: name.value,
       color: color.value.value,
