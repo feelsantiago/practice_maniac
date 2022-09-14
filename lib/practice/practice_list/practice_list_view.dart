@@ -52,14 +52,17 @@ class PracticeListView extends ViewList<Practice, PracticeListViewModel> {
             child: ReactiveBuilder(
               stream: practices.onChange,
               initialData: practices,
-              builder: (context, _) => CustomScrollView(
-                slivers: [
-                  SliverList(
-                    delegate: SliverChildListDelegate(
-                      _practices().toList(),
+              builder: (context, _) => RefreshIndicator(
+                onRefresh: () async => viewModel.fetch(),
+                child: CustomScrollView(
+                  slivers: [
+                    SliverList(
+                      delegate: SliverChildListDelegate(
+                        _practices().toList(),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),

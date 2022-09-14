@@ -19,18 +19,17 @@ class PracticeListViewModel extends ViewModelList<Practice> {
 
   PracticeListViewModel(this.practices, this._navigator) {
     create = RxCommand.createFromStream((_) => _onCreate());
-    fetch = RxCommand.createFromStream(_fetch);
+    fetch = RxCommand.createFromStream((_) => _fetch());
   }
 
   Stream<void> _onCreate() {
     return _navigator
         .go<Practice>(PracticeRoutes().create)
-        .map((practice) => Defined(practice))
         .where((practice) => practice.exist())
         .switchMap((practice) => practices.add(practice.get()));
   }
 
-  Stream<List<Practice>> _fetch(void param) {
+  Stream<List<Practice>> _fetch() {
     return practices.all().doOnData((data) => model.assignAll(data));
   }
 }

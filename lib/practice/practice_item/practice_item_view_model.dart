@@ -31,7 +31,6 @@ class PracticeItemViewModel extends ViewModelData<Practice> {
           PracticeRoutes().detail,
           arguments: model.value,
         )
-        .map((practice) => Defined(practice))
         .where((practice) => practice.exist())
         .doOnData((practice) => model.value.edit(practice.get()))
         .switchMap((_) => model.value.update());

@@ -1,6 +1,7 @@
 import 'package:hive/hive.dart';
 import 'package:injectable/injectable.dart';
 import 'package:practice_maniac/infra/database/data_provider.dart';
+import 'package:practice_maniac/utils/defined.dart';
 
 import 'database.dart';
 import 'entity.dart';
@@ -30,8 +31,8 @@ class Repository implements DataProvider {
   }
 
   @override
-  Stream<T?> getById<T extends Entity>(String id) {
-    return _box<T>().map((box) => box.get(id));
+  Stream<Defined<T>> getById<T extends Entity>(String id) {
+    return _box<T>().map((box) => Defined(box.get(id)));
   }
 
   @override

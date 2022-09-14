@@ -5,12 +5,16 @@ import 'package:practice_maniac/utils/defined.dart';
 
 abstract class INavigator {
   GlobalKey<NavigatorState> state();
-  Stream<T?> go<T extends Object>(String route, {Object? arguments});
-  Stream<T?> push<T extends Object>(String route, {Object? arguments});
-  Stream<T?> replace<T extends Object>(String route, {Object? arguments});
-  Future<T?> goAsync<T extends Object>(String route, {Object? arguments});
-  Future<T?> pushAsync<T extends Object>(String route, {Object? arguments});
-  Future<T?> replaceAsync<T extends Object>(String route, {Object? arguments});
+  Stream<Defined<T>> go<T extends Object>(String route, {Object? arguments});
+  Stream<Defined<T>> push<T extends Object>(String route, {Object? arguments});
+  Stream<Defined<T>> replace<T extends Object>(String route,
+      {Object? arguments});
+  Future<Defined<T>> goAsync<T extends Object>(String route,
+      {Object? arguments});
+  Future<Defined<T>> pushAsync<T extends Object>(String route,
+      {Object? arguments});
+  Future<Defined<T>> replaceAsync<T extends Object>(String route,
+      {Object? arguments});
   void pop<T extends Object>([T? result]);
   void popUntil(String route);
   void replaceAll(String route, {Object? arguments});
@@ -53,7 +57,8 @@ class GlobalNavigator implements INavigator {
   }
 
   @override
-  Future<T?> goAsync<T extends Object>(String route, {Object? arguments}) {
+  Future<Defined<T>> goAsync<T extends Object>(String route,
+      {Object? arguments}) {
     if (stack.contains(route)) {
       popUntil(route);
       pop();
@@ -63,28 +68,34 @@ class GlobalNavigator implements INavigator {
   }
 
   @override
-  Future<T?> pushAsync<T extends Object>(String route, {Object? arguments}) {
-    return navigator.pushNamed<T>(route, arguments: arguments);
+  Future<Defined<T>> pushAsync<T extends Object>(String route,
+      {Object? arguments}) async {
+    final result = await navigator.pushNamed<T>(route, arguments: arguments);
+    return Defined(result);
   }
 
   @override
-  Future<T?> replaceAsync<T extends Object>(String route, {Object? arguments}) {
-    return navigator.pushReplacementNamed<T, Object>(route,
+  Future<Defined<T>> replaceAsync<T extends Object>(String route,
+      {Object? arguments}) async {
+    final result = await navigator.pushReplacementNamed<T, Object>(route,
         arguments: arguments);
+
+    return Defined(result);
   }
 
   @override
-  Stream<T?> go<T extends Object>(String route, {Object? arguments}) {
+  Stream<Defined<T>> go<T extends Object>(String route, {Object? arguments}) {
     return Stream.fromFuture(goAsync<T>(route, arguments: arguments));
   }
 
   @override
-  Stream<T?> push<T extends Object>(String route, {Object? arguments}) {
+  Stream<Defined<T>> push<T extends Object>(String route, {Object? arguments}) {
     return Stream.fromFuture(pushAsync<T>(route, arguments: arguments));
   }
 
   @override
-  Stream<T?> replace<T extends Object>(String route, {Object? arguments}) {
+  Stream<Defined<T>> replace<T extends Object>(String route,
+      {Object? arguments}) {
     return Stream.fromFuture(replaceAsync(route, arguments: arguments));
   }
 
