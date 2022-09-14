@@ -4,7 +4,6 @@ import 'package:practice_maniac/infra/router/navigator.dart';
 import 'package:practice_maniac/practice/domain/practice.dart';
 import 'package:practice_maniac/practice/domain/practices.dart';
 import 'package:practice_maniac/practice/practice_routes.dart';
-import 'package:practice_maniac/utils/defined.dart';
 import 'package:rx_command/rx_command.dart';
 import 'package:rxdart/rxdart.dart';
 
