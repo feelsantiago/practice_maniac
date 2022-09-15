@@ -5,7 +5,6 @@ import 'package:practice_maniac/practice/domain/practices.dart';
 import 'package:practice_maniac/practice/practice_form/practice_form_model.dart';
 import 'package:practice_maniac/utils/colors_utils.dart';
 import 'package:practice_maniac/utils/form.dart';
-import 'package:practice_maniac/utils/listeners_sink.dart';
 import 'package:rx_command/rx_command.dart';
 
 @injectable
@@ -16,7 +15,6 @@ class PracticeFormViewModel extends ViewModelData<PracticeFormModel> {
   final INavigator _navigator;
 
   late final RxCommand<void, void> submit;
-  final ListenersSink _listeners = ListenersSink();
 
   PracticeFormModel get practice => model.value;
 
@@ -24,17 +22,14 @@ class PracticeFormViewModel extends ViewModelData<PracticeFormModel> {
       : form = FormBuilder(),
         colors = const BlockColors() {
     submit = RxCommand.createSyncNoParamNoResult(_onSubmit);
+
+    commands([submit]);
   }
 
   @override
   dynamic onInit() {
-    _listeners.sink =
+    listeners.sink =
         form.saved().listen((_) => _navigator.pop(practice.value()));
-  }
-
-  @override
-  void onDispose() {
-    _listeners.cancel();
   }
 
   void _onSubmit() {

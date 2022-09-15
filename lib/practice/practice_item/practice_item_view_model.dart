@@ -18,6 +18,8 @@ class PracticeItemViewModel extends ViewModelData<Practice> {
   PracticeItemViewModel(this.practices, this.navigator) {
     remove = RxCommand.createFromStream((_) => _onRemove());
     edit = RxCommand.createFromStream((_) => _onEdit());
+
+    commands([remove, edit]);
   }
 
   Stream<void> _onRemove() {
