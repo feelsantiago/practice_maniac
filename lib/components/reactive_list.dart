@@ -18,6 +18,7 @@ class ReactiveList<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     return ReactiveBuilder(
       stream: items.onChange,
+      initialData: items,
       builder: (context, _) {
         return RefreshIndicator(
           onRefresh: () async => onRefresh?.call(),
