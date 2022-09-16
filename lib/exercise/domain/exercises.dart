@@ -1,14 +1,17 @@
+import 'package:practice_maniac/infra/database/data_provider.dart';
 import 'package:practice_maniac/practice/domain/practice.dart';
 
 import 'exercise.dart';
 
 class Exercises {
-  final List<Exercise> _exercises;
+  final EmbeddedDataProvider _data;
 
-  Exercises() : _exercises = [];
-  Exercises.from(Practice practice) : _exercises = practice.exercises;
+  Exercises(this._data);
+  Exercises.from(Practice practice, this._data) {
+    _data.assign(practice, practice.exercises);
+  }
 
-  List<Exercise> all() {
-    return [..._exercises];
+  Stream<List<Exercise>> all() {
+    return _data.getAll<Exercise>();
   }
 }

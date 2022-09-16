@@ -16,4 +16,8 @@ abstract class Entity extends HiveObject implements Birth {
   DateTime date() {
     return createdAt;
   }
+
+  Stream<Entity> update() {
+    return Stream.fromFuture(save()).map((_) => this);
+  }
 }

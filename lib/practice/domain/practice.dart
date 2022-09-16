@@ -40,10 +40,6 @@ class Practice extends Entity {
     color = practice.color;
   }
 
-  Stream<Practice> update() {
-    return Stream.fromFuture(save()).map((_) => this);
-  }
-
   Practice copyWith({
     String? name,
     int? color,
