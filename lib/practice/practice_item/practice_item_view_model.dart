@@ -26,7 +26,7 @@ class PracticeItemViewModel extends ViewModelData<Practice> {
   }
 
   void _onDetail() {
-    navigator.go(ExerciseRoutes().exercises);
+    navigator.go(ExerciseRoutes().exercises, arguments: model.value);
   }
 
   Stream<void> _onRemove() {
