@@ -3,6 +3,9 @@ import 'package:observable_ish/list/list.dart';
 import 'package:practice_maniac/components/add_box.dart';
 import 'package:practice_maniac/components/disclaimer.dart';
 import 'package:practice_maniac/components/page_structure.dart';
+import 'package:practice_maniac/components/reactive_list.dart';
+import 'package:practice_maniac/components/rx_list_disclaimer.dart';
+import 'package:practice_maniac/infra/mvvm.dart';
 import 'package:practice_maniac/infra/mvvm/view_list.dart';
 import 'package:practice_maniac/practice/domain/practice.dart';
 import 'package:practice_maniac/practice/practice_item/practice_item_view.dart';
@@ -29,19 +32,10 @@ class PracticeListView extends ViewList<Practice, PracticeListViewModel> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Disclaimer(text: 'Welcome Back,'),
-          ReactiveBuilder(
-            stream: practices.onChange,
-            initialData: practices,
-            builder: (context, _) => VisibilitySelector(
-              selector: practices.isEmpty,
-              onTrue: SimpleSelector(
-                const Disclaimer(
-                    text: 'Create practices to tracker your progress'),
-              ),
-              onFalse: SimpleSelector(
-                const Disclaimer(text: 'Those are your practices'),
-              ),
-            ),
+          RxListDisclaimer(
+            items: practices,
+            empty: 'Create practices to tracker your progress',
+            full: 'Those are your practices',
           ),
           AddBox(
             onTap: () {
@@ -49,21 +43,10 @@ class PracticeListView extends ViewList<Practice, PracticeListViewModel> {
             },
           ),
           Expanded(
-            child: ReactiveBuilder(
-              stream: practices.onChange,
-              initialData: practices,
-              builder: (context, _) => RefreshIndicator(
-                onRefresh: () async => viewModel.fetch(),
-                child: CustomScrollView(
-                  slivers: [
-                    SliverList(
-                      delegate: SliverChildListDelegate(
-                        _practices().toList(),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+            child: ReactiveList(
+              items: practices,
+              onRefresh: viewModel.fetch,
+              builder: (_) => _practices(),
             ),
           ),
         ],
@@ -72,6 +55,11 @@ class PracticeListView extends ViewList<Practice, PracticeListViewModel> {
   }
 
   Iterable<Widget> _practices() {
-    return practices.map((practice) => PracticeItemView(practice: practice));
+    return practices.map(
+      (practice) => PracticeItemView(
+        practice: practice,
+        onChange: viewModel.fetch,
+      ),
+    );
   }
 }

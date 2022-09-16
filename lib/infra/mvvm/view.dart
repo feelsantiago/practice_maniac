@@ -6,12 +6,15 @@ import 'package:practice_maniac/infra/mvvm.dart';
 import 'package:practice_maniac/infra/mvvm/view_model_provider.dart';
 import 'package:focus_detector/focus_detector.dart';
 import 'package:practice_maniac/infra/router/navigator.dart';
+import 'package:practice_maniac/utils/listeners_sink.dart';
 import 'package:rx_widgets/rx_widgets.dart';
 import 'package:rxdart/rxdart.dart';
 
 abstract class View<T extends ViewModel> extends StatefulWidget {
   final ViewModelProvider<T> provider = ViewModelProvider<T>();
   T get viewModel => provider.viewModel;
+
+  final ListenersSink listeners = ListenersSink();
 
   INavigator get navigator => getIt<INavigator>();
 
@@ -138,6 +141,7 @@ class _ViewState<T extends ViewModel> extends State<View<T>> {
 
   @override
   void dispose() {
+    widget.listeners.cancel();
     widget.dispose();
     widget.viewModel.onDispose();
     _onUpdateWidgetController.close();

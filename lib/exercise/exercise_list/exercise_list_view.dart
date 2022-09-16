@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:observable_ish/list/list.dart';
+import 'package:practice_maniac/components/add_box.dart';
 import 'package:practice_maniac/components/page_structure.dart';
+import 'package:practice_maniac/components/rx_list_disclaimer.dart';
 import 'package:practice_maniac/exercise/domain/exercise.dart';
 import 'package:practice_maniac/exercise/exercise_list/exercise_list_view_model.dart';
 import 'package:practice_maniac/infra/mvvm/view_list.dart';
@@ -30,7 +32,18 @@ class ExerciseListView extends ViewList<Exercise, ExerciseViewModel> {
   Widget build(BuildContext context) {
     return PageStructure(
       title: practice.name,
-      body: Container(),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          RxListDisclaimer(
+            items: exercises,
+            empty: 'No exercises been tracking...',
+            full: 'Tracking exercises',
+          ),
+          AddBox(onTap: () {}),
+        ],
+      ),
     );
   }
 }
