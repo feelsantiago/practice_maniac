@@ -1,6 +1,6 @@
 import 'package:hive/hive.dart';
 import 'package:injectable/injectable.dart';
-import 'package:practice_maniac/exercise/exercise.dart';
+import 'package:practice_maniac/exercise/domain/exercise.dart';
 import 'package:practice_maniac/practice/domain/practice.dart';
 import 'package:practice_maniac/progress/progress.dart';
 import 'package:practice_maniac/utils/not.dart';

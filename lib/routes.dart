@@ -1,4 +1,5 @@
 import 'package:injectable/injectable.dart';
+import 'package:practice_maniac/exercise/exercise_routes.dart';
 import 'package:practice_maniac/infra/router/rx_route.dart';
 import 'package:practice_maniac/practice/practice_routes.dart';
 
@@ -7,8 +8,9 @@ class Routes implements RoutesDefinition {
   @override
   List<RouteModule> routes() => [
         PracticeRoutes(),
+        ExerciseRoutes(),
       ];
 
   @override
-  String initial() => PracticeRoutes().practice;
+  String initial() => PracticeRoutes().practices;
 }

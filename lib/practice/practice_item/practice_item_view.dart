@@ -59,20 +59,28 @@ class PracticeItemView extends ViewData<Practice, PracticeItemViewModel> {
           ),
         ],
       ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 5.0),
-        child: RoundedBox(
-          color: practice.paint(),
-          child: Row(
-            children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _title(),
-                ],
-              ),
-            ],
+      child: GestureDetector(
+        onTap: () => viewModel.detail(),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 5.0),
+          child: RoundedBox(
+            color: practice.paint(),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      child: _title(),
+                    ),
+                  ],
+                ),
+                const Icon(Icons.chevron_right),
+              ],
+            ),
           ),
         ),
       ),

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:observable_ish/list/list.dart';
-import 'package:practice_maniac/exercise/exercise.dart';
-import 'package:practice_maniac/exercise/exercise_item/exercise_item_view.dart';
+import 'package:practice_maniac/components/page_structure.dart';
+import 'package:practice_maniac/exercise/domain/exercise.dart';
 import 'package:practice_maniac/exercise/exercise_list/exercise_list_view_model.dart';
-import 'package:rx_widgets/rx_widgets.dart';
 import 'package:practice_maniac/infra/mvvm/view_list.dart';
 
 class ExerciseListView extends ViewList<Exercise, ExerciseViewModel> {
@@ -13,45 +12,9 @@ class ExerciseListView extends ViewList<Exercise, ExerciseViewModel> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Expanded(
-          child: ReactiveBuilder(
-            stream: exercises.onChange,
-            initialData: exercises,
-            builder: (context, _) => CustomScrollView(
-              slivers: [
-                SliverPadding(
-                  padding: const EdgeInsets.all(20),
-                  sliver: SliverList(
-                    delegate: SliverChildListDelegate(
-                      _exercises(),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-        ElevatedButton(
-          child: const Text('Add'),
-          onPressed: viewModel.newTrackerCommand,
-        ),
-      ],
+    return PageStructure(
+      title: 'Exercises',
+      body: Container(),
     );
-  }
-
-  List<Widget> _exercises() {
-    return exercises
-        .map(
-          (tracker) => Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10),
-            child: ExerciseItemView(
-              key: Key(tracker.id),
-              tracker: tracker,
-            ),
-          ),
-        )
-        .toList();
   }
 }

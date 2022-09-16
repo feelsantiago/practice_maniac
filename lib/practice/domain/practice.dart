@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:practice_maniac/exercise/exercise.dart';
+import 'package:practice_maniac/exercise/domain/exercise.dart';
 import 'package:practice_maniac/infra/database/entity.dart';
 import 'package:practice_maniac/utils/empty_string.dart';
 

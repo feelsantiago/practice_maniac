@@ -1,4 +1,5 @@
 import 'package:injectable/injectable.dart';
+import 'package:practice_maniac/exercise/exercise_routes.dart';
 import 'package:practice_maniac/infra/mvvm.dart';
 import 'package:practice_maniac/infra/router/navigator.dart';
 import 'package:practice_maniac/practice/domain/practice.dart';
@@ -14,12 +15,18 @@ class PracticeItemViewModel extends ViewModelData<Practice> {
 
   late final RxCommand<void, void> remove;
   late final RxCommand<void, void> edit;
+  late final RxCommand<void, void> detail;
 
   PracticeItemViewModel(this.practices, this.navigator) {
     remove = RxCommand.createFromStream((_) => _onRemove());
     edit = RxCommand.createFromStream((_) => _onEdit());
+    detail = RxCommand.createSyncNoParamNoResult(_onDetail);
 
-    commands([remove, edit]);
+    commands([remove, edit, detail]);
+  }
+
+  void _onDetail() {
+    navigator.go(ExerciseRoutes().exercises);
   }
 
   Stream<void> _onRemove() {
