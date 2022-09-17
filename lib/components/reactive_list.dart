@@ -16,23 +16,25 @@ class ReactiveList<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ReactiveBuilder(
-      stream: items.onChange,
-      initialData: items,
-      builder: (context, _) {
-        return RefreshIndicator(
-          onRefresh: () async => onRefresh?.call(),
-          child: CustomScrollView(
-            slivers: [
-              SliverList(
-                delegate: SliverChildListDelegate(
-                  builder(items).toList(),
+    return Expanded(
+      child: ReactiveBuilder(
+        stream: items.onChange,
+        initialData: items,
+        builder: (context, _) {
+          return RefreshIndicator(
+            onRefresh: () async => onRefresh?.call(),
+            child: CustomScrollView(
+              slivers: [
+                SliverList(
+                  delegate: SliverChildListDelegate(
+                    builder(items).toList(),
+                  ),
                 ),
-              ),
-            ],
-          ),
-        );
-      },
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 }

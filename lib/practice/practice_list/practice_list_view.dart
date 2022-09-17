@@ -42,12 +42,10 @@ class PracticeListView extends ViewList<Practice, PracticeListViewModel> {
               viewModel.create();
             },
           ),
-          Expanded(
-            child: ReactiveList(
-              items: practices,
-              onRefresh: viewModel.fetch,
-              builder: (_) => _practices(),
-            ),
+          ReactiveList(
+            items: practices,
+            onRefresh: viewModel.fetch,
+            builder: (_) => _practices(),
           ),
         ],
       ),

@@ -42,10 +42,14 @@ class ExerciseListView extends ViewList<Exercise, ExerciseViewModel> {
             empty: 'No exercises been tracking...',
             full: 'Tracking exercises',
           ),
-          AddBox(onTap: () {}),
+          AddBox(onTap: viewModel.create),
           ReactiveList(
             items: exercises,
-            builder: (_) => [Container()],
+            builder: (_) => [
+              ...exercises.map<Widget>(
+                (exercise) => Container(child: Text(exercise.name)),
+              ),
+            ],
           ),
         ],
       ),

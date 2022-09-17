@@ -38,6 +38,9 @@ class ExerciseFormView
                 exercise.name.value = name ?? '';
               },
             ),
+            const SizedBox(
+              height: 15,
+            ),
             TextFormField(
               initialValue: TextInitialValue(exercise.name.value).value(),
               decoration: const InputDecoration(
