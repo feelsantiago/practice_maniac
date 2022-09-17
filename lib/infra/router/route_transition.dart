@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:practice_maniac/infra/router/types.dart';
+import 'package:practice_maniac/utils/defined.dart';
 
 abstract class RouteTransition {
   Route<Object> build<T extends Object>(
@@ -14,7 +15,7 @@ class DefaultTransition implements RouteTransition {
       RouteSettings settings, RouteBuilder<T> builder, bool fullScreenDialog) {
     return MaterialPageRoute<T>(
       settings: settings,
-      builder: (context) => builder(context, settings.arguments as T?),
+      builder: (context) => builder(context, Defined(settings.arguments as T?)),
       fullscreenDialog: fullScreenDialog,
     );
   }
@@ -35,7 +36,7 @@ class SlideRightTransition implements RouteTransition {
       fullscreenDialog: fullScreenDialog,
       opaque: opaque,
       pageBuilder: (context, _, __) =>
-          builder(context, settings.arguments as T?),
+          builder(context, Defined(settings.arguments as T?)),
       transitionsBuilder: (
         BuildContext context,
         Animation<double> animation,
@@ -67,7 +68,7 @@ class ScalingTransition implements RouteTransition {
       fullscreenDialog: fullScreenDialog,
       opaque: opaque,
       pageBuilder: (context, _, __) =>
-          builder(context, settings.arguments as T?),
+          builder(context, Defined(settings.arguments as T?)),
       transitionsBuilder: (
         BuildContext context,
         Animation<double> animation,
@@ -104,7 +105,7 @@ class RotateTransition implements RouteTransition {
       fullscreenDialog: fullScreenDialog,
       opaque: opaque,
       pageBuilder: (context, _, __) =>
-          builder(context, settings.arguments as T?),
+          builder(context, Defined(settings.arguments as T?)),
       transitionsBuilder: (
         BuildContext context,
         Animation<double> animation,
@@ -141,7 +142,7 @@ class SizeChangeTransition implements RouteTransition {
       fullscreenDialog: fullScreenDialog,
       opaque: opaque,
       pageBuilder: (context, _, __) =>
-          builder(context, settings.arguments as T?),
+          builder(context, Defined(settings.arguments as T?)),
       transitionsBuilder: (
         BuildContext context,
         Animation<double> animation,
@@ -172,7 +173,7 @@ class FadingTransition implements RouteTransition {
       fullscreenDialog: fullScreenDialog,
       opaque: opaque,
       pageBuilder: (context, _, __) =>
-          builder(context, settings.arguments as T?),
+          builder(context, Defined(settings.arguments as T?)),
       transitionsBuilder: (
         BuildContext context,
         Animation<double> animation,

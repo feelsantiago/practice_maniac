@@ -14,4 +14,8 @@ class Exercises {
   Stream<List<Exercise>> all() {
     return _data.getAll<Exercise>();
   }
+
+  Stream<Exercise> add(Exercise exercise) {
+    return _data.create(exercise);
+  }
 }

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:practice_maniac/utils/defined.dart';
 
 enum NavigationType { push, pop, replace, remove }
 typedef RouteBuilder<T extends Object> = Widget Function(
-    BuildContext context, T? arguments);
+    BuildContext context, Defined<T> arguments);
 typedef TransitionBuilder = Widget Function(BuildContext context,
     Animation<double> animation, Animation<double> secondary, Widget child);
 

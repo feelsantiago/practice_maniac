@@ -22,7 +22,7 @@ class PracticeRoutes implements RouteModule {
       RxRoute<Practice>(
         path: detail,
         builder: (context, practice) => PracticeFormView(
-          practice: practice,
+          practice: practice.get(),
         ),
       )
     ];
