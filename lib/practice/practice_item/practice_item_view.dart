@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:practice_maniac/components/card_title.dart';
 import 'package:practice_maniac/components/editable_slideble_item.dart';
 import 'package:practice_maniac/infra/mvvm.dart';
 import 'package:practice_maniac/practice/domain/practice.dart';
@@ -26,28 +27,8 @@ class PracticeItemView extends ViewData<Practice, PracticeItemViewModel> {
       onEdit: viewModel.edit,
       onRemove: viewModel.remove,
       children: [
-        _title(),
+        CardTitle(practice.name),
       ],
-    );
-  }
-
-  Widget _title() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5),
-      child: Text(
-        practice.name,
-        style: const TextStyle(
-          fontSize: 18,
-          fontWeight: FontWeight.bold,
-          shadows: <Shadow>[
-            Shadow(
-              offset: Offset(2, 2),
-              blurRadius: 0.5,
-              color: Colors.black45,
-            ),
-          ],
-        ),
-      ),
     );
   }
 }

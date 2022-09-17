@@ -5,6 +5,7 @@ import 'package:practice_maniac/components/page_structure.dart';
 import 'package:practice_maniac/components/reactive_list.dart';
 import 'package:practice_maniac/components/rx_list_disclaimer.dart';
 import 'package:practice_maniac/exercise/domain/exercise.dart';
+import 'package:practice_maniac/exercise/exercise_item/exercise_item_view.dart';
 import 'package:practice_maniac/exercise/exercise_list/exercise_list_view_model.dart';
 import 'package:practice_maniac/infra/mvvm/view_list.dart';
 import 'package:practice_maniac/practice/domain/practice.dart';
@@ -45,13 +46,17 @@ class ExerciseListView extends ViewList<Exercise, ExerciseViewModel> {
           AddBox(onTap: viewModel.create),
           ReactiveList(
             items: exercises,
-            builder: (_) => [
-              ...exercises.map<Widget>(
-                (exercise) => Container(child: Text(exercise.name)),
-              ),
-            ],
+            builder: (_) => _exercises(),
           ),
         ],
+      ),
+    );
+  }
+
+  Iterable<Widget> _exercises() {
+    return exercises.map(
+      (exercise) => ExerciseItemView(
+        exercise: exercise,
       ),
     );
   }
