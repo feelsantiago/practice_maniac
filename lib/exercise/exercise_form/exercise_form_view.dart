@@ -42,7 +42,7 @@ class ExerciseFormView
               height: 15,
             ),
             TextFormField(
-              initialValue: TextInitialValue(exercise.name.value).value(),
+              initialValue: TextInitialValue(exercise.measure.value).value(),
               decoration: const InputDecoration(
                 hintText: 'How it\'s measured?',
               ),

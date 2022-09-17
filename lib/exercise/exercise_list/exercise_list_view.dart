@@ -57,6 +57,7 @@ class ExerciseListView extends ViewList<Exercise, ExerciseViewModel> {
     return exercises.map(
       (exercise) => ExerciseItemView(
         exercise: exercise,
+        exercises: viewModel.exercises,
       ),
     );
   }

@@ -18,4 +18,12 @@ class Exercises {
   Stream<Exercise> add(Exercise exercise) {
     return _data.create(exercise);
   }
+
+  Stream<void> remove(Exercise exercise) {
+    return _data.removeById(exercise.id);
+  }
+
+  Stream<Exercise> update(Exercise exercise) {
+    return _data.update(exercise);
+  }
 }

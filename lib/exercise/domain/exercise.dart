@@ -7,13 +7,13 @@ part 'exercise.g.dart';
 @HiveType(typeId: 2)
 class Exercise extends EmbeddedEntity {
   @HiveField(1)
-  final String name;
+  String name;
 
   @HiveField(2)
-  final String measure;
+  String measure;
 
   @HiveField(3)
-  final int color;
+  int color;
 
   @HiveField(4)
   final List<Progress> progress;
@@ -27,4 +27,10 @@ class Exercise extends EmbeddedEntity {
     DateTime? createdAt,
   })  : progress = progress ?? [],
         super(id: id, createdAt: createdAt);
+
+  void edit(Exercise exercise) {
+    name = exercise.name;
+    measure = exercise.measure;
+    color = exercise.color;
+  }
 }

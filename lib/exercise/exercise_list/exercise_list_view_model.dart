@@ -14,7 +14,7 @@ class ExerciseViewModel extends ViewModelList<Exercise> {
   late final Practice practice;
   final INavigator _navigator;
 
-  late final Exercises _exercises;
+  late final Exercises exercises;
   late final EmbeddedDataProvider _provider;
 
   late final RxCommand<void, List<Exercise>> fetch;
@@ -29,17 +29,17 @@ class ExerciseViewModel extends ViewModelList<Exercise> {
 
   @override
   dynamic onInit() {
-    _exercises = Exercises.from(practice, _provider);
+    exercises = Exercises.from(practice, _provider);
   }
 
   Stream<List<Exercise>> _onFetch() {
-    return _exercises.all().doOnData((exercises) => model.assignAll(exercises));
+    return exercises.all().doOnData((exercises) => model.assignAll(exercises));
   }
 
   Stream<Exercise> _onCreate() {
     return _navigator
         .go<Exercise>(ExerciseRoutes().create)
         .where((exercise) => exercise.exist())
-        .switchMap((exercise) => _exercises.add(exercise.get()));
+        .switchMap((exercise) => exercises.add(exercise.get()));
   }
 }
