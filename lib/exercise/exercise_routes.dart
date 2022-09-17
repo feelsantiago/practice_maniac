@@ -6,7 +6,8 @@ import 'package:practice_maniac/practice/domain/practice.dart';
 
 class ExerciseRoutes implements RouteModule {
   final String exercises = 'exercises';
-  final String create = 'exercises-create';
+  final String create = 'exercise-create';
+  final String detail = 'exercise-detail';
 
   @override
   List<RxRoute<Object>> build() {
@@ -20,6 +21,12 @@ class ExerciseRoutes implements RouteModule {
       RxRoute<Exercise>(
         path: create,
         builder: (context, _) => ExerciseFormView(),
+      ),
+      RxRoute<Exercise>(
+        path: detail,
+        builder: (context, exercise) => ExerciseFormView(
+          exercise: exercise.get(),
+        ),
       )
     ];
   }
