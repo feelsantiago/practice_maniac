@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:observable_ish/observable_ish.dart';
-import 'package:rx_widgets/rx_widgets.dart';
+import 'package:rx_widgets_plus/rx_widgets_plus.dart';
 
 class RxText extends StatelessWidget {
   final RxValue<String> text;

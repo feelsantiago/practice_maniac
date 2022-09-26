@@ -2,7 +2,6 @@ import 'package:injectable/injectable.dart';
 import 'package:practice_maniac/exercise/domain/exercise.dart';
 import 'package:practice_maniac/exercise/domain/exercises.dart';
 import 'package:practice_maniac/exercise/exercise_routes.dart';
-import 'package:practice_maniac/infra/database/data_provider.dart';
 import 'package:practice_maniac/infra/mvvm/view_model_list.dart';
 import 'package:practice_maniac/infra/router/navigator.dart';
 import 'package:practice_maniac/practice/domain/practice.dart';
@@ -15,12 +14,11 @@ class ExerciseViewModel extends ViewModelList<Exercise> {
   final INavigator _navigator;
 
   late final Exercises exercises;
-  late final EmbeddedDataProvider _provider;
 
   late final RxCommand<void, List<Exercise>> fetch;
   late final RxCommand<void, Exercise> create;
 
-  ExerciseViewModel(this._provider, this._navigator) {
+  ExerciseViewModel(this._navigator) {
     fetch = RxCommand.createFromStream((_) => _onFetch());
     create = RxCommand.createFromStream((_) => _onCreate());
 
@@ -29,7 +27,7 @@ class ExerciseViewModel extends ViewModelList<Exercise> {
 
   @override
   dynamic onInit() {
-    exercises = Exercises.from(practice, _provider);
+    exercises = Exercises.from(practice);
   }
 
   Stream<List<Exercise>> _onFetch() {

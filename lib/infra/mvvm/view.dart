@@ -7,7 +7,7 @@ import 'package:practice_maniac/infra/mvvm/view_model_provider.dart';
 import 'package:focus_detector/focus_detector.dart';
 import 'package:practice_maniac/infra/router/navigator.dart';
 import 'package:practice_maniac/utils/listeners_sink.dart';
-import 'package:rx_widgets/rx_widgets.dart';
+import 'package:rx_widgets_plus/rx_widgets_plus.dart';
 import 'package:rxdart/rxdart.dart';
 
 abstract class View<T extends ViewModel> extends StatefulWidget {

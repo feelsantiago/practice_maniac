@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:observable_ish/list/list.dart';
-import 'package:rx_widgets/rx_widgets.dart';
+import 'package:rx_widgets_plus/rx_widgets_plus.dart';
 
 class ReactiveList<T> extends StatelessWidget {
   final RxList<T> items;

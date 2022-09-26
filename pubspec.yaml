@@ -35,7 +35,7 @@ dependencies:
     provider: ^6.0.1
     focus_detector: ^2.0.0
     observable_ish: ^3.0.1
-    rx_widgets: ^4.0.1
+    rx_widgets_plus: ^1.0.0
     random_color: ^1.0.6-nullsafety
     rx_command: ^6.0.1
 
