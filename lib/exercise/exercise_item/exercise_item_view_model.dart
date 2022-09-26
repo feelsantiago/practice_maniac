@@ -4,6 +4,7 @@ import 'package:practice_maniac/exercise/domain/exercises.dart';
 import 'package:practice_maniac/exercise/exercise_routes.dart';
 import 'package:practice_maniac/infra/mvvm/view_model_data.dart';
 import 'package:practice_maniac/infra/router/navigator.dart';
+import 'package:practice_maniac/progress/progress_routes.dart';
 import 'package:rx_command/rx_command.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -25,7 +26,7 @@ class ExerciseItemViewModel extends ViewModelData<Exercise> {
   }
 
   void _onDetail() {
-    // navigator.go(ExerciseRoutes().exercises, arguments: model.value);
+    _navigator.go(ProgressRoutes().progress);
   }
 
   Stream<void> _onRemove() {
