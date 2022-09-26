@@ -8,7 +8,8 @@ class Exercises {
   final EmbeddedDataProvider _data;
 
   Exercises(this._data);
-  Exercises.from(Practice practice) : _data = SimpleRepository() {
+  Exercises.empty() : _data = EmbeddedRepository();
+  Exercises.from(Practice practice) : _data = EmbeddedRepository() {
     _data.assign(practice, practice.exercises);
   }
 

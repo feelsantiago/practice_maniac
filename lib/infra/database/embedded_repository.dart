@@ -10,13 +10,11 @@ import 'package:rxdart/rxdart.dart';
 import 'entity.dart';
 
 @Injectable(as: EmbeddedDataProvider)
-class SimpleRepository implements EmbeddedDataProvider {
+class EmbeddedRepository implements EmbeddedDataProvider {
   late final List<EmbeddedEntity> _items;
   late final Entity _parent;
 
   bool _initialized = false;
-
-  SimpleRepository();
 
   @override
   void assign<T extends Entity, K extends EmbeddedEntity>(
@@ -77,8 +75,7 @@ class SimpleRepository implements EmbeddedDataProvider {
 
   Stream<List<EmbeddedEntity>> _box() {
     if (Not(_initialized).value) {
-      // Todo: alterar
-      return Stream.error('error');
+      return Stream.error(Exception('Parent model missing!'));
     }
 
     return Stream.value(_items);
