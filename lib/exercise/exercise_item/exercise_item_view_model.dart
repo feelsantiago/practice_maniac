@@ -4,6 +4,7 @@ import 'package:practice_maniac/exercise/domain/exercises.dart';
 import 'package:practice_maniac/exercise/exercise_routes.dart';
 import 'package:practice_maniac/infra/mvvm/view_model_data.dart';
 import 'package:practice_maniac/infra/router/navigator.dart';
+import 'package:practice_maniac/progress/progress.dart';
 import 'package:practice_maniac/progress/progress_routes.dart';
 import 'package:rx_command/rx_command.dart';
 import 'package:rxdart/rxdart.dart';
@@ -26,7 +27,7 @@ class ExerciseItemViewModel extends ViewModelData<Exercise> {
   }
 
   void _onDetail() {
-    _navigator.go(ProgressRoutes().progress);
+    ProgressRoutes(_navigator).progress();
   }
 
   Stream<void> _onRemove() {
@@ -34,11 +35,8 @@ class ExerciseItemViewModel extends ViewModelData<Exercise> {
   }
 
   Stream<void> _onEdit() {
-    return _navigator
-        .go<Exercise>(
-          ExerciseRoutes().detail,
-          arguments: model.value,
-        )
+    return ExerciseRoutes(_navigator)
+        .detail(model.value)
         .where((exercise) => exercise.exist())
         .doOnData((exercise) => model.value.edit(exercise.get()))
         .switchMap((_) => exercises.update(model.value));

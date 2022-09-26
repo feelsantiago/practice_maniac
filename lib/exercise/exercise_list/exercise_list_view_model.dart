@@ -35,8 +35,8 @@ class ExerciseViewModel extends ViewModelList<Exercise> {
   }
 
   Stream<Exercise> _onCreate() {
-    return _navigator
-        .go<Exercise>(ExerciseRoutes().create)
+    return ExerciseRoutes(_navigator)
+        .create()
         .where((exercise) => exercise.exist())
         .switchMap((exercise) => exercises.add(exercise.get()));
   }

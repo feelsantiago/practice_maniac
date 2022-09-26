@@ -8,11 +8,11 @@ import 'package:practice_maniac/progress/progress_routes.dart';
 class Routes implements RoutesDefinition {
   @override
   List<RouteModule> routes() => [
-        PracticeRoutes(),
-        ExerciseRoutes(),
-        ProgressRoutes(),
+        PracticeRoutes.routes(),
+        ExerciseRoutes.routes(),
+        ProgressRoutes.routes(),
       ];
 
   @override
-  String initial() => PracticeRoutes().practices;
+  String initial() => PracticeRoutes.routes().entry();
 }

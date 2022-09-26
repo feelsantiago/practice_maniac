@@ -10,14 +10,14 @@ import 'package:rxdart/rxdart.dart';
 
 @injectable
 class PracticeItemViewModel extends ViewModelData<Practice> {
-  final Practices practices;
-  final INavigator navigator;
+  final Practices _practices;
+  final INavigator _navigator;
 
   late final RxCommand<void, void> remove;
   late final RxCommand<void, void> edit;
   late final RxCommand<void, void> detail;
 
-  PracticeItemViewModel(this.practices, this.navigator) {
+  PracticeItemViewModel(this._practices, this._navigator) {
     remove = RxCommand.createFromStream((_) => _onRemove());
     edit = RxCommand.createFromStream((_) => _onEdit());
     detail = RxCommand.createSyncNoParamNoResult(_onDetail);
@@ -26,19 +26,16 @@ class PracticeItemViewModel extends ViewModelData<Practice> {
   }
 
   void _onDetail() {
-    navigator.go(ExerciseRoutes().exercises, arguments: model.value);
+    ExerciseRoutes(_navigator).exercises(model.value);
   }
 
   Stream<void> _onRemove() {
-    return practices.remove(model.value);
+    return _practices.remove(model.value);
   }
 
   Stream<void> _onEdit() {
-    return navigator
-        .go<Practice>(
-          PracticeRoutes().detail,
-          arguments: model.value,
-        )
+    return PracticeRoutes(_navigator)
+        .detail(model.value)
         .where((practice) => practice.exist())
         .doOnData((practice) => model.value.edit(practice.get()))
         .switchMap((_) => model.value.update());

@@ -24,8 +24,8 @@ class PracticeListViewModel extends ViewModelList<Practice> {
   }
 
   Stream<void> _onCreate() {
-    return _navigator
-        .go<Practice>(PracticeRoutes().create)
+    return PracticeRoutes(_navigator)
+        .create()
         .where((practice) => practice.exist())
         .switchMap((practice) => practices.add(practice.get()));
   }
