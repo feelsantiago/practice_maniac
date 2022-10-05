@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:practice_maniac/progress/components/progress_detail.dart';
-import 'package:practice_maniac/progress/progress.dart';
 import 'package:collection/collection.dart';
+import 'package:practice_maniac/progress/domain/progress.dart';
 import 'package:practice_maniac/utils/defined.dart';
 import 'package:practice_maniac/components/visibility_selector.dart';
 

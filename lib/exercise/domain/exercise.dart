@@ -1,6 +1,6 @@
 import 'package:hive/hive.dart';
 import 'package:practice_maniac/infra/database/embedded_entity.dart';
-import 'package:practice_maniac/progress/progress.dart';
+import 'package:practice_maniac/progress/domain/progress.dart';
 
 part 'exercise.g.dart';
 

@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:practice_maniac/progress/progress.dart';
+import 'package:practice_maniac/progress/domain/progress.dart';
 
 class ProgressDetail extends StatelessWidget {
   final Progress progress;
