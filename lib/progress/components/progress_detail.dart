@@ -14,9 +14,17 @@ class ProgressDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RichText(
-      text: TextSpan(text: progress.value, children: [
-        TextSpan(text: measure),
-      ]),
+      text: TextSpan(
+        text: progress.value,
+        children: [
+          const WidgetSpan(
+            alignment: PlaceholderAlignment.baseline,
+            baseline: TextBaseline.alphabetic,
+            child: SizedBox(width: 5),
+          ),
+          TextSpan(text: measure),
+        ],
+      ),
     );
   }
 }

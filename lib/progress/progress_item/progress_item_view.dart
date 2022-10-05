@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:practice_maniac/infra/mvvm.dart';
+import 'package:practice_maniac/progress/components/progress_detail.dart';
 import 'package:practice_maniac/progress/domain/progress.dart';
 import 'package:practice_maniac/progress/progress_item/progress_item_view_model.dart';
+import 'package:practice_maniac/utils/date_text.dart';
 
 class ProgressItemView extends ViewData<Progress, ProgressItemViewModel> {
   final String measure;
@@ -16,11 +18,21 @@ class ProgressItemView extends ViewData<Progress, ProgressItemViewModel> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
       children: [
-        Text(progress.date().toString()),
-        Text(progress.value),
-        Text(measure),
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 40, vertical: 5),
+          child: Divider(
+            color: Colors.white,
+          ),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Text(DateText(progress.date()).extract()),
+            ProgressDetail(progress: progress, measure: measure),
+          ],
+        ),
       ],
     );
   }

@@ -35,6 +35,26 @@ class ProgressListView extends ViewList<Progress, ProgressListViewModel> {
             progress: Progress(value: "1", createdAt: DateTime.now()),
             measure: 'bpm',
           ),
+          ProgressItemView(
+            progress: Progress(value: "1", createdAt: DateTime.now()),
+            measure: 'bpm',
+          ),
+          ProgressItemView(
+            progress: Progress(value: "1", createdAt: DateTime.now()),
+            measure: 'bpm',
+          ),
+          ProgressItemView(
+            progress: Progress(value: "1", createdAt: DateTime.now()),
+            measure: 'bpm',
+          ),
+          ProgressItemView(
+            progress: Progress(value: "1", createdAt: DateTime.now()),
+            measure: 'bpm',
+          ),
+          ProgressItemView(
+            progress: Progress(value: "1", createdAt: DateTime.now()),
+            measure: 'bpm',
+          ),
         ],
       ),
     );
