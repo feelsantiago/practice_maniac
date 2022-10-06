@@ -5,6 +5,8 @@ import 'package:practice_maniac/utils/defined.dart';
 
 abstract class INavigator {
   GlobalKey<NavigatorState> state();
+  BuildContext context();
+  NavigationStack stack();
   Stream<Defined<T>> go<T extends Object>(String route, {Object? arguments});
   Stream<Defined<T>> push<T extends Object>(String route, {Object? arguments});
   Stream<Defined<T>> replace<T extends Object>(String route,
@@ -24,13 +26,13 @@ abstract class INavigator {
 @Singleton(as: INavigator)
 class GlobalNavigator implements INavigator {
   final GlobalKey<NavigatorState> _state;
-  final NavigationStack stack;
+  final NavigationStack _stack;
 
-  Defined<RouteSettings> get top => stack.top();
+  Defined<RouteSettings> get top => _stack.top();
   NavigatorState get navigator => _state.currentState!;
 
-  GlobalNavigator(this.stack) : _state = GlobalKey<NavigatorState>();
-  GlobalNavigator.state(this._state, this.stack);
+  GlobalNavigator(this._stack) : _state = GlobalKey<NavigatorState>();
+  GlobalNavigator.state(this._state, this._stack);
 
   @override
   GlobalKey<NavigatorState> state() {
@@ -38,8 +40,24 @@ class GlobalNavigator implements INavigator {
   }
 
   @override
+  NavigationStack stack() {
+    return _stack;
+  }
+
+  @override
+  BuildContext context() {
+    final context = Defined(_state.currentContext);
+
+    if (context.not.exist()) {
+      throw Exception('[Navigator] - no context defined');
+    }
+
+    return context.get();
+  }
+
+  @override
   bool canPop() {
-    return stack.notEmpty && navigator.canPop();
+    return _stack.notEmpty && navigator.canPop();
   }
 
   @override
@@ -59,7 +77,7 @@ class GlobalNavigator implements INavigator {
   @override
   Future<Defined<T>> goAsync<T extends Object>(String route,
       {Object? arguments}) {
-    if (stack.contains(route)) {
+    if (_stack.contains(route)) {
       popUntil(route);
       pop();
     }
