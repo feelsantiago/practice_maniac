@@ -1,15 +1,15 @@
 import 'package:flutter/cupertino.dart';
-import 'package:practice_maniac/progress/components/progress_detail.dart';
+import 'package:practice_maniac/progress/components/progress_measure.dart';
 import 'package:collection/collection.dart';
 import 'package:practice_maniac/progress/domain/progress.dart';
 import 'package:practice_maniac/utils/defined.dart';
 import 'package:practice_maniac/components/visibility_selector.dart';
 
-class LastProgress extends StatelessWidget {
+class LastProgressMeasure extends StatelessWidget {
   final List<Progress> progresses;
   final String measure;
 
-  const LastProgress(
+  const LastProgressMeasure(
       {Key? key, required this.progresses, required this.measure})
       : super(key: key);
 
@@ -19,7 +19,7 @@ class LastProgress extends StatelessWidget {
     return VisibilitySelector(
       selector: progress.exist(),
       onTrue: LazySelector(
-        (_) => ProgressDetail(
+        (_) => ProgressMeasure(
           progress: progress.get(),
           measure: measure,
         ),

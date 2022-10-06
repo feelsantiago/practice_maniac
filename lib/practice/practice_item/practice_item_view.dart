@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:practice_maniac/components/card_title.dart';
 import 'package:practice_maniac/components/color_card.dart';
-import 'package:practice_maniac/components/editable_slideble.dart';
+import 'package:practice_maniac/components/editable_slidable.dart';
 import 'package:practice_maniac/infra/mvvm.dart';
 import 'package:practice_maniac/practice/domain/practice.dart';
 import 'package:practice_maniac/practice/practice_item/practice_item_view_model.dart';

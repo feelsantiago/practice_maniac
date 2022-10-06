@@ -3,7 +3,9 @@ import 'package:observable_ish/observable_ish.dart';
 import 'package:practice_maniac/components/add_box.dart';
 import 'package:practice_maniac/components/page_structure.dart';
 import 'package:practice_maniac/components/rx_list_disclaimer.dart';
+import 'package:practice_maniac/exercise/components/last_progress_measure.dart';
 import 'package:practice_maniac/infra/mvvm.dart';
+import 'package:practice_maniac/progress/components/last_progress.dart';
 import 'package:practice_maniac/progress/domain/progress.dart';
 import 'package:practice_maniac/progress/progress_item/progress_item_view.dart';
 import 'package:practice_maniac/progress/progress_list/progress_list_view_model.dart';
@@ -31,6 +33,13 @@ class ProgressListView extends ViewList<Progress, ProgressListViewModel> {
           //   items: progress,
           //   builder: (_) => [Container()],
           // ),
+          LastProgress(
+            progress: Progress(value: "1", createdAt: DateTime.now()),
+            measure: 'bpm',
+          ),
+          const Center(
+            child: Text('History'),
+          ),
           ProgressItemView(
             progress: Progress(value: "1", createdAt: DateTime.now()),
             measure: 'bpm',

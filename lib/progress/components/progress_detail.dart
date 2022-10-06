@@ -1,9 +1,12 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:practice_maniac/progress/domain/progress.dart';
+import 'package:practice_maniac/utils/date_text.dart';
+
+import 'progress_measure.dart';
 
 class ProgressDetail extends StatelessWidget {
-  final Progress progress;
   final String measure;
+  final Progress progress;
 
   const ProgressDetail({
     Key? key,
@@ -13,18 +16,12 @@ class ProgressDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RichText(
-      text: TextSpan(
-        text: progress.value,
-        children: [
-          const WidgetSpan(
-            alignment: PlaceholderAlignment.baseline,
-            baseline: TextBaseline.alphabetic,
-            child: SizedBox(width: 5),
-          ),
-          TextSpan(text: measure),
-        ],
-      ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        Text(DateText(progress.date()).extract()),
+        ProgressMeasure(progress: progress, measure: measure),
+      ],
     );
   }
 }

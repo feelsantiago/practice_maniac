@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:practice_maniac/components/card_title.dart';
 import 'package:practice_maniac/components/color_card.dart';
-import 'package:practice_maniac/components/editable_slideble.dart';
+import 'package:practice_maniac/components/editable_slidable.dart';
+import 'package:practice_maniac/exercise/components/last_progress_measure.dart';
 import 'package:practice_maniac/exercise/domain/exercise.dart';
 import 'package:practice_maniac/exercise/domain/exercises.dart';
 import 'package:practice_maniac/exercise/exercise_item/exercise_item_view_model.dart';
 import 'package:practice_maniac/infra/mvvm/view_data.dart';
-
-import 'components/last_progress.dart';
 
 class ExerciseItemView extends ViewData<Exercise, ExerciseItemViewModel> {
   final Exercises exercises;
@@ -34,7 +33,7 @@ class ExerciseItemView extends ViewData<Exercise, ExerciseItemViewModel> {
         onTap: viewModel.detail,
         children: [
           CardTitle(exercise.name),
-          LastProgress(
+          LastProgressMeasure(
             progresses: exercise.progress,
             measure: exercise.measure,
           ),
