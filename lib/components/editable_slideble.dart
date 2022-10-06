@@ -1,21 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:practice_maniac/components/rounded_box.dart';
 
-class EditableSlidableItem extends StatelessWidget {
-  final Color color;
-  final List<Widget> children;
-  final void Function() onTap;
+class EditableSlidable extends StatelessWidget {
+  final Widget body;
   final void Function() onEdit;
   final void Function() onRemove;
 
-  const EditableSlidableItem({
+  const EditableSlidable({
     required Key key,
-    required this.children,
-    required this.onTap,
     required this.onRemove,
     required this.onEdit,
-    this.color = Colors.blue,
+    required this.body,
   }) : super(key: key);
 
   @override
@@ -64,26 +59,7 @@ class EditableSlidableItem extends StatelessWidget {
           ),
         ],
       ),
-      child: GestureDetector(
-        onTap: onTap,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 5.0),
-          child: RoundedBox(
-            color: color,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: children,
-                ),
-                const Icon(Icons.chevron_right),
-              ],
-            ),
-          ),
-        ),
-      ),
+      child: body,
     );
   }
 }

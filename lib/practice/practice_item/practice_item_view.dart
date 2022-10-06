@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:practice_maniac/components/card_title.dart';
-import 'package:practice_maniac/components/editable_slideble_item.dart';
+import 'package:practice_maniac/components/color_card.dart';
+import 'package:practice_maniac/components/editable_slideble.dart';
 import 'package:practice_maniac/infra/mvvm.dart';
 import 'package:practice_maniac/practice/domain/practice.dart';
 import 'package:practice_maniac/practice/practice_item/practice_item_view_model.dart';
@@ -20,15 +21,17 @@ class PracticeItemView extends ViewData<Practice, PracticeItemViewModel> {
 
   @override
   Widget build(BuildContext context) {
-    return EditableSlidableItem(
+    return EditableSlidable(
       key: ValueKey(practice),
-      color: Color(practice.color),
-      onTap: viewModel.detail,
       onEdit: viewModel.edit,
       onRemove: viewModel.remove,
-      children: [
-        CardTitle(practice.name),
-      ],
+      body: ColorCard(
+        color: Color(practice.color),
+        onTap: viewModel.detail,
+        children: [
+          CardTitle(practice.name),
+        ],
+      ),
     );
   }
 }

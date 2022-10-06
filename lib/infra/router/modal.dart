@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:injectable/injectable.dart';
 import 'package:practice_maniac/infra/router/navigator.dart';
 import 'package:practice_maniac/utils/defined.dart';
 import 'package:practice_maniac/utils/not.dart';
@@ -39,12 +40,27 @@ class ModalKey {
   }
 }
 
-class Modal<T> {
+abstract class Modal {
+  ModalData<T> open<T>(
+    WidgetBuilder builder, {
+    bool barrierDismissible = true,
+    Color? barrierColor = Colors.black54,
+    String? barrierLabel,
+    bool useSafeArea = true,
+    bool useRootNavigator = true,
+    String? name,
+    Offset? anchorPoint,
+  });
+}
+
+@Injectable(as: Modal)
+class ModalHandler implements Modal {
   final INavigator _navigator;
 
-  Modal(this._navigator);
+  ModalHandler(this._navigator);
 
-  ModalData<T> open(
+  @override
+  ModalData<T> open<T>(
     WidgetBuilder builder, {
     bool barrierDismissible = true,
     Color? barrierColor = Colors.black54,

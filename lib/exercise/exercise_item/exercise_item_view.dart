@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:practice_maniac/components/card_title.dart';
-import 'package:practice_maniac/components/editable_slideble_item.dart';
+import 'package:practice_maniac/components/color_card.dart';
+import 'package:practice_maniac/components/editable_slideble.dart';
 import 'package:practice_maniac/exercise/domain/exercise.dart';
 import 'package:practice_maniac/exercise/domain/exercises.dart';
 import 'package:practice_maniac/exercise/exercise_item/exercise_item_view_model.dart';
@@ -24,19 +25,21 @@ class ExerciseItemView extends ViewData<Exercise, ExerciseItemViewModel> {
 
   @override
   Widget build(BuildContext context) {
-    return EditableSlidableItem(
+    return EditableSlidable(
       key: ValueKey(exercise),
-      color: Color(exercise.color),
-      onTap: viewModel.detail,
       onEdit: viewModel.edit,
       onRemove: viewModel.remove,
-      children: [
-        CardTitle(exercise.name),
-        LastProgress(
-          progresses: exercise.progress,
-          measure: exercise.measure,
-        ),
-      ],
+      body: ColorCard(
+        color: Color(exercise.color),
+        onTap: viewModel.detail,
+        children: [
+          CardTitle(exercise.name),
+          LastProgress(
+            progresses: exercise.progress,
+            measure: exercise.measure,
+          ),
+        ],
+      ),
     );
   }
 }
