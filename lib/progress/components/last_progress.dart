@@ -14,6 +14,28 @@ class LastProgress extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ProgressDetail(progress: progress, measure: measure);
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 20),
+      child: Column(
+        children: [
+          Row(
+            children: const [
+              Text('Last Progress'),
+              SizedBox(width: 5),
+              Expanded(
+                child: Divider(
+                  color: Colors.white,
+                ),
+              )
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10),
+            child: ProgressDetail(progress: progress, measure: measure),
+          ),
+          const Divider(color: Colors.white)
+        ],
+      ),
+    );
   }
 }
