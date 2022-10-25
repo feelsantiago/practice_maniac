@@ -3,10 +3,11 @@ import 'package:practice_maniac/components/editable_slidable.dart';
 import 'package:practice_maniac/infra/mvvm.dart';
 import 'package:practice_maniac/progress/components/progress_detail.dart';
 import 'package:practice_maniac/progress/domain/progress.dart';
+import 'package:practice_maniac/progress/domain/progresses.dart';
 import 'package:practice_maniac/progress/progress_item/progress_item_view_model.dart';
 
 class ProgressItemView extends ViewData<Progress, ProgressItemViewModel> {
-  final String measure;
+  final Progresses progresses;
   final void Function() onChange;
 
   Progress get progress => viewModel.model.value;
@@ -14,12 +15,13 @@ class ProgressItemView extends ViewData<Progress, ProgressItemViewModel> {
   ProgressItemView({
     Key? key,
     required Progress progress,
-    required this.measure,
+    required this.progresses,
     required this.onChange,
   }) : super(key: key, model: progress);
 
   @override
   dynamic onInit() {
+    viewModel.progresses = progresses;
     listeners.sink = viewModel.remove.results.listen((_) => onChange());
   }
 
@@ -36,7 +38,10 @@ class ProgressItemView extends ViewData<Progress, ProgressItemViewModel> {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10),
-            child: ProgressDetail(progress: progress, measure: measure),
+            child: ProgressDetail(
+              progress: progress,
+              measure: progresses.measure,
+            ),
           ),
         ],
       ),

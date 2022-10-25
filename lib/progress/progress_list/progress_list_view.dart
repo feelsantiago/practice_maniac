@@ -5,7 +5,6 @@ import 'package:practice_maniac/components/page_structure.dart';
 import 'package:practice_maniac/components/reactive_list.dart';
 import 'package:practice_maniac/components/rx_list_disclaimer.dart';
 import 'package:practice_maniac/infra/mvvm.dart';
-import 'package:practice_maniac/progress/components/last_progress.dart';
 import 'package:practice_maniac/progress/domain/progress.dart';
 import 'package:practice_maniac/progress/domain/progresses.dart';
 import 'package:practice_maniac/progress/progress_item/progress_item_view.dart';
@@ -42,18 +41,12 @@ class ProgressListView extends ViewList<Progress, ProgressListViewModel> {
             empty: 'No progress yet...',
             full: 'There are your progress',
           ),
-          AddBox(onTap: () {}),
+          AddBox(onTap: viewModel.create),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40),
               child: Column(
                 children: [
-                  LastProgress(
-                    progress: Progress(value: "1", createdAt: DateTime.now()),
-                    measure: 'bpm',
-                  ),
-                  const Center(child: Text('History')),
-                  const SizedBox(height: 20),
                   ReactiveList(
                     items: progress,
                     builder: (_) => _progress(),
@@ -71,7 +64,7 @@ class ProgressListView extends ViewList<Progress, ProgressListViewModel> {
     return progress.map(
       (progress) => ProgressItemView(
         progress: progress,
-        measure: 'bpm',
+        progresses: progresses,
         onChange: viewModel.fetch,
       ),
     );

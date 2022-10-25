@@ -1,10 +1,13 @@
 import 'package:injectable/injectable.dart';
 import 'package:practice_maniac/infra/mvvm.dart';
 import 'package:practice_maniac/progress/domain/progress.dart';
+import 'package:practice_maniac/progress/domain/progresses.dart';
 import 'package:rx_command/rx_command.dart';
 
 @injectable
 class ProgressItemViewModel extends ViewModelData<Progress> {
+  late final Progresses progresses;
+
   late final RxCommand<void, void> remove;
   late final RxCommand<void, void> edit;
 
@@ -15,5 +18,7 @@ class ProgressItemViewModel extends ViewModelData<Progress> {
 
   Stream<void> _onEdit() async* {}
 
-  Stream<void> _onRemove() async* {}
+  Stream<void> _onRemove() {
+    return progresses.remove(model.value);
+  }
 }
