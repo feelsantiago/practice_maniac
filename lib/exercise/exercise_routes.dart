@@ -1,4 +1,5 @@
 import 'package:practice_maniac/exercise/domain/exercise.dart';
+import 'package:practice_maniac/exercise/domain/exercises.dart';
 import 'package:practice_maniac/exercise/exercise_form/exercise_form_view.dart';
 import 'package:practice_maniac/exercise/exercise_list/exercise_list_view.dart';
 import 'package:practice_maniac/infra/router/navigator.dart';
@@ -19,10 +20,10 @@ class ExerciseRoutes implements RouteModule {
   @override
   List<RxRoute<Object>> build() {
     return [
-      RxRoute<Practice>(
+      RxRoute<Exercises>(
         path: _exercises,
-        builder: (context, practice) => ExerciseListView(
-          practice: practice.get(),
+        builder: (context, exercises) => ExerciseListView(
+          exercises: exercises.get(),
         ),
       ),
       RxRoute<Exercise>(
@@ -39,7 +40,8 @@ class ExerciseRoutes implements RouteModule {
   }
 
   Stream<void> exercises(Practice practice) {
-    return _navigator.go(_exercises, arguments: practice);
+    final arguments = Exercises.from(practice);
+    return _navigator.go(_exercises, arguments: arguments);
   }
 
   Stream<Defined<Exercise>> create() {

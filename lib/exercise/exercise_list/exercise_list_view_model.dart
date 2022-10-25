@@ -4,13 +4,11 @@ import 'package:practice_maniac/exercise/domain/exercises.dart';
 import 'package:practice_maniac/exercise/exercise_routes.dart';
 import 'package:practice_maniac/infra/mvvm/view_model_list.dart';
 import 'package:practice_maniac/infra/router/navigator.dart';
-import 'package:practice_maniac/practice/domain/practice.dart';
 import 'package:rx_command/rx_command.dart';
 import 'package:rxdart/rxdart.dart';
 
 @injectable
 class ExerciseViewModel extends ViewModelList<Exercise> {
-  late final Practice practice;
   final INavigator _navigator;
 
   late final Exercises exercises;
@@ -23,11 +21,6 @@ class ExerciseViewModel extends ViewModelList<Exercise> {
     create = RxCommand.createFromStream((_) => _onCreate());
 
     commands([fetch, create]);
-  }
-
-  @override
-  dynamic onInit() {
-    exercises = Exercises.from(practice);
   }
 
   Stream<List<Exercise>> _onFetch() {
