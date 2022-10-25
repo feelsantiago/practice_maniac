@@ -32,7 +32,7 @@ class ProgressListView extends ViewList<Progress, ProgressListViewModel> {
   @override
   Widget build(BuildContext context) {
     return PageStructure(
-      title: 'Progress',
+      title: '${progresses.exercise} Progress',
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
