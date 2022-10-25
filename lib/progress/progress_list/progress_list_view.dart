@@ -7,13 +7,27 @@ import 'package:practice_maniac/components/rx_list_disclaimer.dart';
 import 'package:practice_maniac/infra/mvvm.dart';
 import 'package:practice_maniac/progress/components/last_progress.dart';
 import 'package:practice_maniac/progress/domain/progress.dart';
+import 'package:practice_maniac/progress/domain/progresses.dart';
 import 'package:practice_maniac/progress/progress_item/progress_item_view.dart';
 import 'package:practice_maniac/progress/progress_list/progress_list_view_model.dart';
 
 class ProgressListView extends ViewList<Progress, ProgressListViewModel> {
+  final Progresses progresses;
+
   RxList<Progress> get progress => viewModel.model;
 
-  ProgressListView({Key? key}) : super(key: key, model: []);
+  ProgressListView({Key? key, required this.progresses})
+      : super(key: key, model: []);
+
+  @override
+  dynamic onInit() {
+    viewModel.progresses = progresses;
+  }
+
+  @override
+  void onVisibilityGained() {
+    viewModel.fetch();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,14 +68,12 @@ class ProgressListView extends ViewList<Progress, ProgressListViewModel> {
   }
 
   Iterable<Widget> _progress() {
-    return List.generate(
-      25,
-      (index) => Progress(
-        value: index.toString(),
-        createdAt: DateTime.now(),
+    return progress.map(
+      (progress) => ProgressItemView(
+        progress: progress,
+        measure: 'bpm',
+        onChange: viewModel.fetch,
       ),
-    ).map(
-      (progress) => ProgressItemView(progress: progress, measure: 'bpm'),
     );
   }
 }

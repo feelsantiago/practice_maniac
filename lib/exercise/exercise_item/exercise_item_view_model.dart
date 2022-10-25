@@ -26,7 +26,11 @@ class ExerciseItemViewModel extends ViewModelData<Exercise> {
   }
 
   void _onDetail() {
-    ProgressRoutes(_navigator).progress();
+    ProgressRoutes(_navigator).progresses(
+      exercises.parent,
+      model.value.measure,
+      model.value.progress,
+    );
   }
 
   Stream<void> _onRemove() {

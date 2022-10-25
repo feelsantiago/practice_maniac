@@ -23,4 +23,5 @@ abstract class EmbeddedDataProvider {
   Stream<void> clear<T extends EmbeddedEntity>();
   void assign<T extends Entity, K extends EmbeddedEntity>(
       T parent, List<K> items);
+  T parent<T extends Entity>();
 }

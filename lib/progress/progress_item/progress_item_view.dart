@@ -7,6 +7,7 @@ import 'package:practice_maniac/progress/progress_item/progress_item_view_model.
 
 class ProgressItemView extends ViewData<Progress, ProgressItemViewModel> {
   final String measure;
+  final void Function() onChange;
 
   Progress get progress => viewModel.model.value;
 
@@ -14,7 +15,13 @@ class ProgressItemView extends ViewData<Progress, ProgressItemViewModel> {
     Key? key,
     required Progress progress,
     required this.measure,
+    required this.onChange,
   }) : super(key: key, model: progress);
+
+  @override
+  dynamic onInit() {
+    listeners.sink = viewModel.remove.results.listen((_) => onChange());
+  }
 
   @override
   Widget build(BuildContext context) {

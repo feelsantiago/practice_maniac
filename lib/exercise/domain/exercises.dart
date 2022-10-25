@@ -7,6 +7,8 @@ import 'exercise.dart';
 class Exercises {
   final EmbeddedDataProvider _data;
 
+  Practice get parent => _data.parent<Practice>();
+
   Exercises(this._data);
   Exercises.empty() : _data = EmbeddedRepository();
   Exercises.from(Practice practice) : _data = EmbeddedRepository() {

@@ -73,6 +73,11 @@ class EmbeddedRepository implements EmbeddedDataProvider {
     return _box().switchMap((_) => _save()).mapTo(entity);
   }
 
+  @override
+  T parent<T extends Entity>() {
+    return _parent as T;
+  }
+
   Stream<List<EmbeddedEntity>> _box() {
     if (Not(_initialized).value) {
       return Stream.error(Exception('Parent model missing!'));
