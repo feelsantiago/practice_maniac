@@ -15,7 +15,7 @@ class ProgressMeasure extends StatelessWidget {
   Widget build(BuildContext context) {
     return RichText(
       text: TextSpan(
-        text: progress.value,
+        text: progress.value.toString(),
         children: [
           const WidgetSpan(
             alignment: PlaceholderAlignment.baseline,

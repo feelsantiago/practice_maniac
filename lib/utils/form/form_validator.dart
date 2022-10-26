@@ -6,12 +6,12 @@ typedef ValidatorHandler<T> = String? Function(T? value);
 
 abstract class ValidatorState {
   bool exist();
-  String? error();
+  String? result();
 }
 
 class ValidatorSuccess implements ValidatorState {
   @override
-  String? error() {
+  String? result() {
     return null;
   }
 
@@ -36,7 +36,7 @@ class ValidatorError<T> implements ValidatorState {
   }
 
   @override
-  String? error() {
+  String? result() {
     return _result;
   }
 }
@@ -58,7 +58,7 @@ class FormValidator<T> {
             orElse: () => ValidatorSuccess(),
           );
 
-      return valid.error();
+      return valid.result();
     };
   }
 }

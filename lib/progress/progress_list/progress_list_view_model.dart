@@ -2,7 +2,7 @@ import 'package:injectable/injectable.dart';
 import 'package:practice_maniac/infra/mvvm.dart';
 import 'package:practice_maniac/infra/router/modal.dart';
 import 'package:practice_maniac/infra/router/navigator.dart';
-import 'package:practice_maniac/progress/components/progress_info_dialog.dart';
+import 'package:practice_maniac/progress/progress_form_dialog/progress_form_dialog_view.dart';
 import 'package:practice_maniac/progress/domain/progress.dart';
 import 'package:practice_maniac/progress/domain/progresses.dart';
 import 'package:rx_command/rx_command.dart';
@@ -34,7 +34,7 @@ class ProgressListViewModel extends ViewModelList<Progress> {
   Stream<bool> _onCreate() {
     return _modal
         .open<bool>((context) =>
-            ProgressInfoDialog(title: 'Novo', measure: progresses.measure))
+            ProgressFormDialogView(title: 'Novo', measure: progresses.measure))
         .onClose
         .map((event) => true);
   }

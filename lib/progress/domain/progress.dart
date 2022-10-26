@@ -6,7 +6,7 @@ part 'progress.g.dart';
 @HiveType(typeId: 3)
 class Progress extends EmbeddedEntity {
   @HiveField(1)
-  final String value;
+  final int value;
 
   Progress({
     required this.value,
