@@ -1,4 +1,5 @@
 import 'package:practice_maniac/exercise/domain/exercise.dart';
+import 'package:practice_maniac/progress/domain/progress.dart';
 import 'package:practice_maniac/infra/database/data_provider.dart';
 import 'package:practice_maniac/infra/database/embedded_repository.dart';
 import 'package:practice_maniac/practice/domain/practice.dart';
@@ -27,15 +28,15 @@ class Progresses {
     return _data.getAll<Progress>();
   }
 
-  Stream<Progress> add(Progress exercise) {
-    return _data.create(exercise);
+  Stream<Progress> add(Progress progress) {
+    return _data.create(progress);
   }
 
-  Stream<void> remove(Progress exercise) {
-    return _data.removeById(exercise.id);
+  Stream<void> remove(Progress progress) {
+    return _data.removeById(progress.id);
   }
 
-  Stream<Progress> update(Progress exercise) {
-    return _data.update(exercise);
+  Stream<Progress> update(Progress progress) {
+    return _data.update(progress);
   }
 }

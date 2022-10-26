@@ -5,6 +5,7 @@ import 'package:practice_maniac/progress/components/progress_detail.dart';
 import 'package:practice_maniac/progress/domain/progress.dart';
 import 'package:practice_maniac/progress/domain/progresses.dart';
 import 'package:practice_maniac/progress/progress_item/progress_item_view_model.dart';
+import 'package:rx_widgets_plus/rx_widgets_plus.dart';
 
 class ProgressItemView extends ViewData<Progress, ProgressItemViewModel> {
   final Progresses progresses;
@@ -38,9 +39,13 @@ class ProgressItemView extends ViewData<Progress, ProgressItemViewModel> {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10),
-            child: ProgressDetail(
-              progress: progress,
-              measure: progresses.measure,
+            child: ReactiveBuilder(
+              stream: viewModel.edit.results.where((event) => event.hasData),
+              initialData: true,
+              builder: (context, _) => ProgressDetail(
+                progress: progress,
+                measure: progresses.measure,
+              ),
             ),
           ),
         ],

@@ -34,7 +34,7 @@ class ProgressListViewModel extends ViewModelList<Progress> {
   Stream<void> _onCreate() {
     return _modal
         .open<Progress>((context) =>
-            ProgressFormDialogView(title: 'Novo', measure: progresses.measure))
+            ProgressFormDialogView(title: 'New', measure: progresses.measure))
         .onClose
         .where((progress) => progress.exist())
         .switchMap((progress) => progresses.add(progress.get()))

@@ -6,11 +6,15 @@ part 'progress.g.dart';
 @HiveType(typeId: 3)
 class Progress extends EmbeddedEntity {
   @HiveField(1)
-  final int value;
+  int value;
 
   Progress({
     required this.value,
     String? id,
     DateTime? createdAt,
   }) : super(id: id, createdAt: createdAt);
+
+  void edit(Progress progress) {
+    value = progress.value;
+  }
 }
