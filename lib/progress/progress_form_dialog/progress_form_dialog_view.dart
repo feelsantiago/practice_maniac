@@ -13,6 +13,8 @@ class ProgressFormDialogView
   final String title;
   final String measure;
 
+  ProgressFormModel get progress => viewModel.model.value;
+
   ProgressFormDialogView({
     Key? key,
     required this.title,
@@ -25,7 +27,7 @@ class ProgressFormDialogView
     return AlertDialog(
       title: Text(title),
       content: RxForm(
-        form: FormBuilder(),
+        form: viewModel.form,
         child: TextFormField(
           keyboardType: TextInputType.number,
           decoration: InputDecoration(hintText: measure),
@@ -34,6 +36,9 @@ class ProgressFormDialogView
             OnlyNumbersValidator(),
             GreaterThanValidator(base: 0),
           ]).register(),
+          onSaved: (value) {
+            progress.value.value = int.tryParse(value!)!;
+          },
         ),
       ),
       actions: [

@@ -16,7 +16,7 @@ class ProgressListViewModel extends ViewModelList<Progress> {
   late final Progresses progresses;
 
   late final RxCommand<void, List<Progress>> fetch;
-  late final RxCommand<void, bool> create;
+  late final RxCommand<void, void> create;
 
   ProgressListViewModel(this._navigator, this._modal) {
     fetch = RxCommand.createFromStream((_) => _onFetch());
@@ -31,11 +31,13 @@ class ProgressListViewModel extends ViewModelList<Progress> {
         .doOnData((progresses) => model.assignAll(progresses));
   }
 
-  Stream<bool> _onCreate() {
+  Stream<void> _onCreate() {
     return _modal
-        .open<bool>((context) =>
+        .open<Progress>((context) =>
             ProgressFormDialogView(title: 'Novo', measure: progresses.measure))
         .onClose
-        .map((event) => true);
+        .where((progress) => progress.exist())
+        .switchMap((progress) => progresses.add(progress.get()))
+        .doOnData((_) => fetch());
   }
 }
