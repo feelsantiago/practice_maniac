@@ -74,6 +74,11 @@ class EmbeddedRepository implements EmbeddedDataProvider {
   }
 
   @override
+  List<T> getAllSync<T extends EmbeddedEntity>() {
+    return _items as List<T>;
+  }
+
+  @override
   T parent<T extends Entity>() {
     return _parent as T;
   }

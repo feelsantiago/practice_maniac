@@ -21,6 +21,7 @@ abstract class EmbeddedDataProvider {
   Stream<void> removeById<T extends EmbeddedEntity>(String id);
   Stream<void> removeMany<T extends EmbeddedEntity>(List<String> ids);
   Stream<void> clear<T extends EmbeddedEntity>();
+  List<T> getAllSync<T extends EmbeddedEntity>();
   void assign<T extends Entity, K extends EmbeddedEntity>(
       T parent, List<K> items);
   T parent<T extends Entity>();

@@ -5,6 +5,7 @@ import 'package:rx_widgets_plus/rx_widgets_plus.dart';
 
 class ReactiveList<T> extends StatelessWidget {
   final RxList<T> items;
+  final List<T>? initialData;
   final FitStrategy fit;
   final void Function()? onRefresh;
   final Iterable<Widget> Function(List<T> items) builder;
@@ -14,6 +15,7 @@ class ReactiveList<T> extends StatelessWidget {
     required this.items,
     required this.builder,
     this.onRefresh,
+    this.initialData,
     this.fit = const ExpandToFit(),
   }) : super(key: key);
 
@@ -21,7 +23,7 @@ class ReactiveList<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     final content = ReactiveBuilder(
       stream: items.onChange,
-      initialData: items,
+      initialData: initialData,
       builder: (context, _) {
         return RefreshIndicator(
           onRefresh: () async => onRefresh?.call(),

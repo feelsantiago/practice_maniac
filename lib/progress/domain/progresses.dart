@@ -5,8 +5,6 @@ import 'package:practice_maniac/infra/database/embedded_repository.dart';
 import 'package:practice_maniac/practice/domain/practice.dart';
 import 'package:practice_maniac/utils/history.dart';
 
-import 'progress.dart';
-
 class Progresses {
   final String exercise;
   final String measure;
@@ -29,6 +27,10 @@ class Progresses {
     return _data
         .getAll<Progress>()
         .map((progress) => History(progress).descendent());
+  }
+
+  List<Progress> allSync() {
+    return History(_data.getAllSync()).descendent();
   }
 
   Stream<Progress> add(Progress progress) {

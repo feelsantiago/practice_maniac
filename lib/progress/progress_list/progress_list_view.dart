@@ -17,16 +17,11 @@ class ProgressListView extends ViewList<Progress, ProgressListViewModel> {
   RxList<Progress> get progress => viewModel.model;
 
   ProgressListView({Key? key, required this.progresses})
-      : super(key: key, model: []);
+      : super(key: key, model: progresses.allSync());
 
   @override
   dynamic onInit() {
     viewModel.progresses = progresses;
-  }
-
-  @override
-  void onVisibilityGained() {
-    viewModel.fetch();
   }
 
   @override
@@ -49,6 +44,7 @@ class ProgressListView extends ViewList<Progress, ProgressListViewModel> {
               child: ReactiveList(
                 fit: const FitOnly(),
                 items: progress,
+                initialData: progress,
                 builder: (_) => _progress(),
               ),
             ),
