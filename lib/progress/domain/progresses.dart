@@ -3,6 +3,7 @@ import 'package:practice_maniac/progress/domain/progress.dart';
 import 'package:practice_maniac/infra/database/data_provider.dart';
 import 'package:practice_maniac/infra/database/embedded_repository.dart';
 import 'package:practice_maniac/practice/domain/practice.dart';
+import 'package:practice_maniac/utils/history.dart';
 
 import 'progress.dart';
 
@@ -25,7 +26,9 @@ class Progresses {
   }
 
   Stream<List<Progress>> all() {
-    return _data.getAll<Progress>();
+    return _data
+        .getAll<Progress>()
+        .map((progress) => History(progress).descendent());
   }
 
   Stream<Progress> add(Progress progress) {

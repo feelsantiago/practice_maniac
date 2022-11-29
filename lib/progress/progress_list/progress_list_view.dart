@@ -9,6 +9,7 @@ import 'package:practice_maniac/progress/domain/progress.dart';
 import 'package:practice_maniac/progress/domain/progresses.dart';
 import 'package:practice_maniac/progress/progress_item/progress_item_view.dart';
 import 'package:practice_maniac/progress/progress_list/progress_list_view_model.dart';
+import 'package:practice_maniac/utils/fit_strategy.dart';
 
 class ProgressListView extends ViewList<Progress, ProgressListViewModel> {
   final Progresses progresses;
@@ -44,14 +45,11 @@ class ProgressListView extends ViewList<Progress, ProgressListViewModel> {
           AddBox(onTap: viewModel.create),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40),
-              child: Column(
-                children: [
-                  ReactiveList(
-                    items: progress,
-                    builder: (_) => _progress(),
-                  ),
-                ],
+              padding: const EdgeInsets.only(left: 40, right: 40, bottom: 40),
+              child: ReactiveList(
+                fit: const FitOnly(),
+                items: progress,
+                builder: (_) => _progress(),
               ),
             ),
           ),
@@ -63,6 +61,7 @@ class ProgressListView extends ViewList<Progress, ProgressListViewModel> {
   Iterable<Widget> _progress() {
     return progress.map(
       (progress) => ProgressItemView(
+        key: Key(progress.id),
         progress: progress,
         progresses: progresses,
         onChange: viewModel.fetch,
