@@ -19,6 +19,10 @@ class Exercises {
     return _data.getAll<Exercise>();
   }
 
+  List<Exercise> allSync() {
+    return _data.getAllSync();
+  }
+
   Stream<Exercise> add(Exercise exercise) {
     return _data.create(exercise);
   }

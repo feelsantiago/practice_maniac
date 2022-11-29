@@ -19,16 +19,11 @@ class ExerciseListView extends ViewList<Exercise, ExerciseViewModel> {
     Key? key,
     required Exercises exercises,
   })  : _provider = exercises,
-        super(key: key, model: []);
+        super(key: key, model: exercises.allSync());
 
   @override
   dynamic onInit() {
     viewModel.exercises = _provider;
-  }
-
-  @override
-  void onVisibilityGained() {
-    viewModel.fetch();
   }
 
   @override
@@ -47,6 +42,7 @@ class ExerciseListView extends ViewList<Exercise, ExerciseViewModel> {
           AddBox(onTap: viewModel.create),
           ReactiveList(
             items: exercises,
+            initialData: exercises,
             builder: (_) => _exercises(),
           ),
         ],
