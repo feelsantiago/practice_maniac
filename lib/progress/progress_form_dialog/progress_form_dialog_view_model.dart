@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
 import 'package:practice_maniac/infra/mvvm/view_model_data.dart';
 import 'package:practice_maniac/infra/router/navigator.dart';
