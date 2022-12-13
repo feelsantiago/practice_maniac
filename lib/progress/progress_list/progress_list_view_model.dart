@@ -38,6 +38,6 @@ class ProgressListViewModel extends ViewModelList<Progress> {
         .onClose
         .where((progress) => progress.exist())
         .switchMap((progress) => progresses.add(progress.get()))
-        .doOnData((_) => fetch());
+        .doOnData((progress) => model.add(progress));
   }
 }

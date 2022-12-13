@@ -44,6 +44,7 @@ class ProgressListView extends ViewList<Progress, ProgressListViewModel> {
               child: ReactiveList(
                 fit: const FitOnly(),
                 items: progress,
+                onRefresh: () => viewModel.fetch(),
                 initialData: progress,
                 builder: (_) => _progress(),
               ),

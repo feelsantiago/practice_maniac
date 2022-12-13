@@ -43,6 +43,7 @@ class ExerciseListView extends ViewList<Exercise, ExerciseViewModel> {
           ReactiveList(
             items: exercises,
             initialData: exercises,
+            onRefresh: () => viewModel.fetch(),
             builder: (_) => _exercises(),
           ),
         ],
