@@ -54,6 +54,7 @@ class ExerciseListView extends ViewList<Exercise, ExerciseViewModel> {
   Iterable<Widget> _exercises() {
     return exercises.map(
       (exercise) => ExerciseItemView(
+        key: Key(exercise.id),
         exercise: exercise,
         exercises: viewModel.exercises,
       ),

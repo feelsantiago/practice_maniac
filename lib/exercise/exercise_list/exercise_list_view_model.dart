@@ -32,6 +32,6 @@ class ExerciseViewModel extends ViewModelList<Exercise> {
         .create()
         .where((exercise) => exercise.exist())
         .switchMap((exercise) => exercises.add(exercise.get()))
-        .doOnData((exercise) => model.insert(0, exercise));
+        .doOnData((exercise) => model.add(exercise));
   }
 }
